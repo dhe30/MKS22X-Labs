@@ -16,7 +16,7 @@ public class Recursion{
       System.out.println(word);
     } else {
       for (char c = 'a'; c <= 'e'; c++){
-        printAllWords(a - 1, word + c);
+        printAllWords(length - 1, word + c);
       }
     }
   }
