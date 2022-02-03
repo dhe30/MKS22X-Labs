@@ -40,8 +40,25 @@ public class Recursion{
   */
   public static void printNoDoubleLetterWords(int length,String word,char[]letters){
     //WRITE THIS METHOD
+
+    if (length == 0){
+      System.out.println(word);
+    } else {
+      for (int i = 0; i < letters.length; i++){
+        if (word.length() != 0){
+          if (letters[i] != word.charAt(word.length() - 1)){
+            printAllWords(length - 1, word + letters[i]);
+          } else {
+            System.out.println("1");
+          }
+        } else {
+        printAllWords(length - 1, word + letters[i]);
+      }
+      }
+    }
   }
   public static void main(String[] args){
-    printAllWords(3);
+    char[] letters = {'a','b','c'};
+    printNoDoubleLetterWords(2, letters);
   }
 }
