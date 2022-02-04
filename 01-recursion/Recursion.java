@@ -45,14 +45,13 @@ public class Recursion{
       System.out.println(word);
     } else {
       for (int i = 0; i < letters.length; i++){
+        char c = letters[i];
         if (word.length() != 0){
-          if (letters[i] != word.charAt(word.length() - 1)){
-            printAllWords(length - 1, word + letters[i]);
-          } else {
-            System.out.println("1");
+          if (c != word.charAt(word.length() - 1)){
+            printNoDoubleLetterWords(length - 1, word + c, letters);
           }
         } else {
-        printAllWords(length - 1, word + letters[i]);
+        printNoDoubleLetterWords(length - 1, word + c, letters);
       }
       }
     }
