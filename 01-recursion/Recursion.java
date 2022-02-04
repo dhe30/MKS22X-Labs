@@ -56,8 +56,22 @@ public class Recursion{
       }
     }
   }
+
+  /*
+          *@param s any string
+          *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
+          */
+  public static String reverse(String s){
+    if (s.length() <= 1){
+      return s;
+    } else{
+      int length = s.length();
+      return s.substring(length-1, length) + reverse(s.substring(0, length-1));
+    }
+  }
+
   public static void main(String[] args){
-    char[] letters = {'a','b','c'};
-    printNoDoubleLetterWords(2, letters);
+    String a = "abc";
+    System.out.println(reverse(a));
   }
 }
