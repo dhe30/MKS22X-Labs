@@ -94,7 +94,24 @@ public class Recursion{
     }
     return total;
   }
+  /*
+            *@param n any non-negative value you want to take the sqrt of
+            *@return the approximate sqrt of n within a tolerance of 0.001%
+            */
+  public static double sqrt(double n){
+    //Hint: This is a wrapper method.
+    return sqrt(n, 1.0);
+  }
+  public static double sqrt(double n, double guess){
+    if( (((guess*guess)-n)/n) * 100.0 <= 0.001 && (((guess*guess)-n)/n) * 100.0 > 0){
+      return guess;
+    } else {
+      guess = (n / guess + guess) / 2.0;
+      return sqrt(n, guess);
+    }
+  }
+
   public static void main(String[] args){
-    System.out.println(countNoDoubleLetterWords(3,""));
+    System.out.println(sqrt(100.0));
   }
 }
