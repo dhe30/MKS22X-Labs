@@ -103,6 +103,9 @@ public class Recursion{
     return sqrt(n, 1.0);
   }
   public static double sqrt(double n, double guess){
+    if (n == 0.0){
+      return 0.0;
+    }
     if( (((guess*guess)-n)/n) * 100.0 <= 0.001 && (((guess*guess)-n)/n) * 100.0 > 0){
       return guess;
     } else {
@@ -112,6 +115,6 @@ public class Recursion{
   }
 
   public static void main(String[] args){
-    System.out.println(sqrt(100.0));
+    System.out.println(sqrt(0));
   }
 }
