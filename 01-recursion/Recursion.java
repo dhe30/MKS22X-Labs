@@ -114,7 +114,21 @@ public class Recursion{
     }
   }
 
+  /*
+            *@param n any non-negative value
+            *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+            */
+  public static int fibIter(int n, int f1, int f2){
+    //DO NOT call fibIter more than once
+    if (n == 0){
+      return f2;
+    }
+    if (n < 2){
+      return f1;
+    }
+    return fibIter(n - 1, f1 + f2, f1);
+  }
   public static void main(String[] args){
-    System.out.println(sqrt(0));
+    System.out.println(fibIter(1,1,0));
   }
 }
