@@ -123,7 +123,7 @@ public class Recursion{
     if (n == 0){
       return f2;
     }
-    if (n < 2){
+    if (n == 1){
       return f1;
     }
     return fibIter(n - 1, f1 + f2, f1);
