@@ -5,10 +5,15 @@ public class partial{
     } else if (targetValue == 0){
       return true;
     }
-    return partialSum(start + 1, arr, targetValue - arr[start]) || partialSum(start + 1, arr, targetValue);
+    boolean boo1 = partialSum(start, arr, targetValue - arr[start]);
+    boolean boo2 =partialSum(start + 1, arr, targetValue);
+    if(targetValue - arr[start] ){
+      return true;
+    }
+    return partialSum(start + 1, arr, targetValue);
   }
   public static void main(String[] args){
-    int[] arr = {2,3,4};
+    int[] arr = {2,3,4,6};
     System.out.println(partialSum(0,arr,10));
   }
 }
