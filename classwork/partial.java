@@ -10,8 +10,20 @@ public class partial{
     }
     return false;
   }
+  public static int sumArray(int[] nums, int start, int sum){
+    if (start == nums.length){
+      return sum;
+    }
+    return sumArray(nums, start + 1, sum + nums[start]);
+  }
+  // public static boolean splitArray(int[] nums) {
+  //   splitArray(nums, 0, 0);
+  // }
+  // public static boolean splitArray(int[] nums, int sum, int start, int[] nums1, int[]nums2) {
+  //   return (nums,sum)
+  // }
   public static void main(String[] args){
     int[] arr = {1,1,1,0};
-    System.out.println(partialSum(0,arr,4));
+    System.out.println(sumArray(arr,0,0));
   }
 }
