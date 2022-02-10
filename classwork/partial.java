@@ -20,7 +20,7 @@ public class partial{
   }
 
   public static boolean groupSum5(int start, int[] nums, int target) {
-    if (target == 0){
+    if (target == 0 && start == nums.length){
       return true;
     } else if (start == nums.length){
       return false;
