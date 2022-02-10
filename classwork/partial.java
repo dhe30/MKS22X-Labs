@@ -19,22 +19,22 @@ public class partial{
     }
   }
 
-  public boolean groupSum5(int start, int[] nums, int target) {
+  public static boolean groupSum5(int start, int[] nums, int target) {
     if (target == 0){
       return true;
     } else if (start == nums.length){
       return false;
     } else if(nums[start]%5 == 0){
-      return (groupSum5(start + 1, nums, target - nums[start]);
+      return (groupSum5(start + 1, nums, target - nums[start]));
     } else if(nums[start] == 1){
       if (start != 0){
         if(nums[start - 1]%5 == 0){
-          return (groupSum5(start + 1, nums, target);
+          return (groupSum5(start + 1, nums, target));
         }
       }
-    } else {
-        return (groupSum5(start + 1, nums, target - nums[start])||return (groupSum5(start + 1, nums, target)));
     }
+    return (groupSum5(start + 1, nums, target - nums[start])) || (groupSum5(start + 1, nums, target));
+
   }
 
   public static void main(String[] args){
