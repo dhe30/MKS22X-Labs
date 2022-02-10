@@ -5,13 +5,13 @@ public class partial{
     } else if (targetValue == 0){
       return true;
     }
-    if(partialSum(start, arr, targetValue - arr[start])||partialSum(start + 1, arr, targetValue)){
+    if(partialSum(start + 1, arr, targetValue - arr[start])||partialSum(start + 1, arr, targetValue)){
       return true;
     }
     return false;
   }
   public static void main(String[] args){
-    int[] arr = {2,3,4,6};
-    System.out.println(partialSum(0,arr,10));
+    int[] arr = {1,1,1,0};
+    System.out.println(partialSum(0,arr,4));
   }
 }
