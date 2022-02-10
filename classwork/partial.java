@@ -24,12 +24,16 @@ public class partial{
       return true;
     } else if (start == nums.length){
       return false;
-    } else if(nums[start] == 5){
+    } else if(nums[start]%5 == 0){
       return (groupSum5(start + 1, nums, target - nums[start]);
     } else if(nums[start] == 1){
       if (start != 0){
-        if()
+        if(nums[start - 1]%5 == 0){
+          return (groupSum5(start + 1, nums, target);
+        }
       }
+    } else {
+        return (groupSum5(start + 1, nums, target - nums[start])||return (groupSum5(start + 1, nums, target)));
     }
   }
 
