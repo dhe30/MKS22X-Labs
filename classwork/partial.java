@@ -1,14 +1,11 @@
 public class partial{
   public static boolean partialSum(int start,int[] arr,int targetValue){
-    if (start == arr.length){
+    if (targetValue == 0){
+      return true;
+    } else if (start == arr.length){
       return false;
-    } else if (targetValue == 0){
-      return true;
     }
-    if(partialSum(start + 1, arr, targetValue - arr[start])||partialSum(start + 1, arr, targetValue)){
-      return true;
-    }
-    return false;
+    return (partialSum(start + 1, arr, targetValue - arr[start])||partialSum(start + 1, arr, targetValue));
   }
   public static int sumArray(int[] nums, int start, int sum){
     if (start == nums.length){
@@ -23,14 +20,11 @@ public class partial{
     if (start != nums.length){
       return splitArray(nums,start + 1,nums1+nums[start],nums2)||splitArray(nums,start + 1,nums1,nums2+nums[start]);
     } else {
-      if (nums1 == nums2){
-        return true;
-      }
-        return false;
+      return nums1 == nums2;
     }
   }
   public static void main(String[] args){
     int[] arr = {1,2,1,3,7};
-    System.out.println(splitArray(arr));
+    System.out.println(partialSum(0,arr,9));
   }
 }
