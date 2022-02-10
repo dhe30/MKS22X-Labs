@@ -37,7 +37,7 @@ public class partial{
 
   }
 
-  public boolean groupSum6(int start, int[] nums, int target) {
+  public static boolean groupSum6(int start, int[] nums, int target) {
     if (target == 0 && start == nums.length){
       return true;
     } else if (start == nums.length){
@@ -46,6 +46,18 @@ public class partial{
       return (groupSum6(start + 1, nums, target - nums[start]));
     }
     return (groupSum6(start + 1, nums, target - nums[start])) || (groupSum6(start + 1, nums, target));
+  }
+
+  public boolean groupNoAdj(int start, int[] nums, int target) {
+    if (target == 0 && start == nums.length){
+      return true;
+    } else if (start == nums.length){
+      return false;
+    } else if(start%2 == 0){
+      return (groupSum6(start + 1, nums, target - nums[start])) || (groupSum6(start + 1, nums, target));;
+    }
+    return (groupSum6(start + 1, nums, target)) || (groupSum6(start + 1, nums, target - nums[start])));
+  }
   }
 
   public static void main(String[] args){
