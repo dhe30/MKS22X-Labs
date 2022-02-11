@@ -86,6 +86,22 @@ public class partial{
       return nums1%10 == 0 && nums2%2 == 1 || nums2%10 == 0 && nums1%2 == 1;
     }
   }
+  public static boolean split53(int[] nums) {
+    return split53(nums, 0, 0, 0);
+  }
+  public static boolean split53(int[] nums, int start, int nums1, int nums2) {
+    if (start != nums.length){
+      if (nums[start]%5 == 0){
+        return split53(nums,start + 1,nums1+nums[start],nums2);
+      } else if (nums[start]%3 == 0){
+        return split53(nums,start + 1,nums1,nums2+nums[start]);
+      } else {
+        return split53(nums,start + 1,nums1+nums[start],nums2)||split53(nums,start + 1,nums1,nums2+nums[start]);
+      }
+    } else {
+      return nums1 == nums2;
+    }
+  }
   public static void main(String[] args){
     int[] arr = {2,5,10,4,2};
     System.out.println(groupNoAdj(0,arr,7));
