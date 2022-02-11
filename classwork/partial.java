@@ -53,11 +53,8 @@ public class partial{
       return true;
     } else if (start == nums.length){
       return false;
-    } else if(start%2 == 0){
-      return (groupSum6(start + 1, nums, target - nums[start])) || (groupSum6(start + 1, nums, target));;
     }
-    return (groupSum6(start + 1, nums, target)) || (groupSum6(start + 1, nums, target - nums[start])));
-  }
+    return (groupNoAdj(start + 1, nums, target)) || (groupNoAdj(start + 2, nums, target - nums[start]));
   }
 
   public static void main(String[] args){
