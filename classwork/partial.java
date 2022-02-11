@@ -61,17 +61,19 @@ public class partial{
       return true;
     } else if (start >= nums.length){
       return false;
-    } else if (nums[start] == nums[start + 1]){
-      int ans = 0;
-      for (int i = start; i < nums.length; i++){
-        if (nums[i] != nums[start]){
-          i = nums.length;
-        } else {
-          ans+=1;
+    } else if (start < nums.length - 1){
+        if (nums[start] == nums[start + 1]){
+          int ans = 0;
+          for (int i = start; i < nums.length; i++){
+            if (nums[i] != nums[start]){
+              i = nums.length;
+            } else {
+              ans+=1;
+            }
+          }
+          return (groupSumClump(start + ans, nums, target)) || (groupSumClump(start + ans, nums, target - (nums[start] * ans)));
         }
       }
-      return (groupSumClump(start + ans, nums, target)) || (groupSumClump(start + ans, nums, target - (nums[start] * ans)));
-    }
     return (groupSumClump(start + 1, nums, target)) || (groupSumClump(start + 1, nums, target - nums[start]));
   }
   public static void main(String[] args){
