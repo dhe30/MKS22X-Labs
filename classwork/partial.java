@@ -56,7 +56,24 @@ public class partial{
     }
     return (groupNoAdj(start + 1, nums, target)) || (groupNoAdj(start + 2, nums, target - nums[start]));
   }
-
+  public boolean groupSumClump(int start, int[] nums, int target) {
+    if (target == 0){
+      return true;
+    } else if (start >= nums.length){
+      return false;
+    } else if (nums[start] == nums[start + 1]){
+      int ans = 0;
+      for (int i = start; i < nums.length; i++){
+        if (nums[i] != nums[start]){
+          i = nums.length;
+        } else {
+          ans+=1;
+        }
+      }
+      return (groupSumClump(start + ans, nums, target)) || (groupSumClump(start + ans, nums, target - (nums[start] * ans)));
+    }
+    return (groupSumClump(start + 1, nums, target)) || (groupSumClump(start + 1, nums, target - nums[start]));
+  }
   public static void main(String[] args){
     int[] arr = {2,5,10,4,2};
     System.out.println(groupNoAdj(0,arr,7));
