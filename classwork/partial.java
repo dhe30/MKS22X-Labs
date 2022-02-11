@@ -48,17 +48,17 @@ public class partial{
     return (groupSum6(start + 1, nums, target - nums[start])) || (groupSum6(start + 1, nums, target));
   }
 
-  public boolean groupNoAdj(int start, int[] nums, int target) {
-    if (target == 0 && start == nums.length){
+  public static boolean groupNoAdj(int start, int[] nums, int target) {
+    if (target == 0){
       return true;
-    } else if (start == nums.length){
+    } else if (start >= nums.length){
       return false;
     }
     return (groupNoAdj(start + 1, nums, target)) || (groupNoAdj(start + 2, nums, target - nums[start]));
   }
 
   public static void main(String[] args){
-    int[] arr = {1,2,1,3,7};
-    System.out.println(partialSum(0,arr,9));
+    int[] arr = {2,5,10,4,2};
+    System.out.println(groupNoAdj(0,arr,7));
   }
 }
