@@ -76,6 +76,16 @@ public class partial{
       }
     return (groupSumClump(start + 1, nums, target)) || (groupSumClump(start + 1, nums, target - nums[start]));
   }
+  public static boolean splitOdd10(int[] nums) {
+    return splitOdd10(nums,0,0,0);
+  }
+  public static boolean splitOdd10(int[] nums, int start, int nums1, int nums2) {
+    if (start != nums.length){
+      return splitOdd10(nums,start + 1,nums1+nums[start],nums2)||splitOdd10(nums,start + 1,nums1,nums2+nums[start]);
+    } else {
+      return nums1%10 == 0 && nums2%2 == 1 || nums2%10 == 0 && nums1%2 == 1;
+    }
+  }
   public static void main(String[] args){
     int[] arr = {2,5,10,4,2};
     System.out.println(groupNoAdj(0,arr,7));
