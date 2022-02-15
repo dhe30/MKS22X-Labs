@@ -14,7 +14,18 @@ public class QueenBoard{
   *_ Q _ _
   *excludes the characters up to the comment(*)
   */
-  public String toString(){}
+  public String toString(){
+    String ans = "";
+    for (int i = 0; i < board.length; i++){
+      for (int a = 0; a < board.length; a++){
+
+          ans += board[i][a] + " ";
+
+      }
+      ans += "\n";
+    }
+    return ans;
+  }
 
   /**
   *@return true when the queen added correctly, false Otherwise
@@ -23,16 +34,22 @@ public class QueenBoard{
   * in which case the queen is added and all it's threatened positions are incremented
   */
   private boolean addQueen(int r, int c){
-    if(board[r][c] == 0]){
-      board[r][c] == -1;
-      for(int i = 0; i < r - board.length; i++){
-        board[i][c] == 1;
+    if(board[r][c] == 0){
+      board[r][c] = -1;
+      int a = 1;
+      for(int i = r + 1; i < board.length; i++){
+        board[i][c] = board[i][c] + 1;
+        if (c + a < board.length){
+          board[i][c + a] = board[i][c + a] + 1;
+        }
+        if (c - a >= 0){
+          board[i][c - a] = board[i][c - a] + 1;
+        }
+        a++;
       }
-      int row = r;
-      int column = c;
-      while (r < board.length && c < board.length){
-        
-      }
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -42,7 +59,18 @@ public class QueenBoard{
   *threatened positions are decremented
   */
   private void removeQueen(int r, int c){
-
+    board[r][c] = 0;
+    int a = 1;
+    for(int i = r + 1; i < board.length; i++){
+      board[i][c] = board[i][c] - 1;
+      if (c + a < board.length){
+        board[i][c + a] = board[i][c + a] - 1;
+      }
+      if (c - a >= 0){
+        board[i][c - a] = board[i][c - a] - 1;
+      }
+      a++;
+    }
   }
 
   /**Find the first solution configuration possible for this size board. Start by placing
@@ -54,11 +82,20 @@ public class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  public boolean solve(){}
-
-  /**Find all possible solutions to this size board.
-  *@return the number of solutions found, and leaves the board filled with only 0's
-  *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
-  */
-  public int countSolutions(){}
+  // public boolean solve(){}
+  //
+  // /**Find all possible solutions to this size board.
+  // *@return the number of solutions found, and leaves the board filled with only 0's
+  // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
+  // */
+  // public int countSolutions(){}
+  public static void main(String[] args){
+    QueenBoard a = new QueenBoard(5);
+    a.addQueen(0,1);
+    a.addQueen(1,3);
+    a.addQueen(3,2);
+    System.out.println(a);
+    a.removeQueen(3,2);
+    System.out.println(a);
+  }
 }
