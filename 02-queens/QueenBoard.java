@@ -18,8 +18,11 @@ public class QueenBoard{
     String ans = "";
     for (int i = 0; i < board.length; i++){
       for (int a = 0; a < board.length; a++){
-
-          ans += board[i][a] + " ";
+        if (board[i][a] == -1){
+          ans += "Q ";
+        } else{
+          ans += "_ ";
+        }
 
       }
       ans += "\n";
@@ -82,7 +85,32 @@ public class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  // public boolean solve(){}
+  public boolean solve(){
+    return solve(0);
+  }
+
+  public boolean solve(int row){
+    if (row == board.length){
+      return true;
+    } else {
+      for (int i = 0; i < board.length; i++){
+        if(addQueen(row, i)){
+          System.out.println(Text.go(1,1));
+         System.out.println(this);//can change this to your debug print as well
+         Text.wait(1500);//change the delay 1000 = 1 second
+          if (solve(row + 1)){
+            System.out.println("true");
+            return true;
+          }
+          removeQueen(row, i);
+          System.out.println(Text.go(1,1));
+         System.out.println(this);//can change this to your debug print as well
+         Text.wait(1500);//change the delay 1000 = 1 second
+        }
+      }
+      return false;
+    }
+  }
   //
   // /**Find all possible solutions to this size board.
   // *@return the number of solutions found, and leaves the board filled with only 0's
@@ -90,12 +118,13 @@ public class QueenBoard{
   // */
   // public int countSolutions(){}
   public static void main(String[] args){
-    QueenBoard a = new QueenBoard(5);
-    a.addQueen(0,1);
-    a.addQueen(1,3);
-    a.addQueen(3,2);
-    System.out.println(a);
-    a.removeQueen(3,2);
-    System.out.println(a);
+    QueenBoard a = new QueenBoard(8);
+    System.out.println(Text.CLEAR_SCREEN);
+          System.out.println(Text.HIDE_CURSOR);
+          System.out.println(Text.go(1,1));
+          a.solve();
+          System.out.println(Text.RESET);
+
+
   }
 }
