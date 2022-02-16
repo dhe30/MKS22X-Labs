@@ -1,7 +1,15 @@
 public class QueenBoard{
   private int[][]board;
+  private boolean animated;
+  private int delay;
   public QueenBoard(int size){
     board = new int[size][size];
+  }
+  public void setAnimate(boolean newValue){
+    animated = newValue;
+  }
+  public void setDelay(int newValue){
+    delay = newValue;
   }
   /**
   *@return The output string formatted as follows:
@@ -95,17 +103,21 @@ public class QueenBoard{
     } else {
       for (int i = 0; i < board.length; i++){
         if(addQueen(row, i)){
-          System.out.println(Text.go(1,1));
-         System.out.println(this);//can change this to your debug print as well
-         Text.wait(1500);//change the delay 1000 = 1 second
+          if(animated){
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
+          }
           if (solve(row + 1)){
             System.out.println("true");
             return true;
           }
           removeQueen(row, i);
-          System.out.println(Text.go(1,1));
-         System.out.println(this);//can change this to your debug print as well
-         Text.wait(1500);//change the delay 1000 = 1 second
+          if(animated){
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
+          }
         }
       }
       return false;
@@ -116,15 +128,39 @@ public class QueenBoard{
   // *@return the number of solutions found, and leaves the board filled with only 0's
   // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   // */
-  // public int countSolutions(){}
+  public int countSolutions(int row){
+    int ans = 0;
+    if (row == board.length){
+      ans += 1;
+    }
+      for (int i = 0; i < board.length; i++){
+        if (addQueen(row, i)){
+          return ans + countSolutions(row + 1);
+        }
+        
+
+      }
+      removeQueen(row, i);
+      return ans;
+    }
+
   public static void main(String[] args){
-    QueenBoard a = new QueenBoard(8);
+    int size = 8;
+    if (args.length > 0){
+      size = Integer.parseInt(args[0]);
+    }
+    QueenBoard u = new QueenBoard(size);
+    if (args.length > 1){
+      u.setAnimate(true);
+      u.setDelay(Integer.parseInt(args[1]));
+    }
     System.out.println(Text.CLEAR_SCREEN);
           System.out.println(Text.HIDE_CURSOR);
           System.out.println(Text.go(1,1));
-          a.solve();
+          u.solve();
           System.out.println(Text.RESET);
-
+          System.out.println(Text.go(1,1));
+          System.out.println(u);
 
   }
 }
