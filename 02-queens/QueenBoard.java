@@ -131,14 +131,27 @@ public class QueenBoard{
   public int countSolutions(int row){
     int ans = 0;
     if (row == board.length){
+      String answ = "";
+      for (int i = 0; i < board.length; i++){
+        for (int a = 0; a < board.length; a++){
+          if (board[i][a] == -1){
+            answ += "Q ";
+          } else{
+            answ += "_ ";
+          }
+
+        }
+        answ += "\n";
+      }
+      System.out.println(answ);
       return 1;
     }
       for (int i = 0; i < board.length; i++){
         if (addQueen(row, i)){
           ans += countSolutions(row + 1);
-        } else {
           removeQueen(row, i);
         }
+
 
 
       }
