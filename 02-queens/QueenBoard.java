@@ -116,7 +116,7 @@ public class QueenBoard{
             Text.wait(delay);
           }
           if (solve(row + 1)){
-            
+
             return true;
           }
           removeQueen(row, i);
@@ -134,7 +134,7 @@ public class QueenBoard{
   // /**Find all possible solutions to this size board.
   // *@return the number of solutions found, and leaves the board filled with only 0's
   // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
-  // */
+  // */  a.solve();
   public int countSolutions(){
     for (int i = 0; i < board.length; i++){
       for (int a = 0; a < board.length; a++){
