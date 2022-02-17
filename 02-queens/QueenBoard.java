@@ -136,6 +136,13 @@ public class QueenBoard{
   // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   // */
   public int countSolutions(){
+    for (int i = 0; i < board.length; i++){
+      for (int a = 0; a < board.length; a++){
+        if (board[i][a] != 0){
+          throw new IllegalStateException("Cannot count solved board");
+        }
+      }
+    }
     return countSolutions(0);
   }
   public int countSolutions(int row){
