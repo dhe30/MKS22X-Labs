@@ -131,16 +131,18 @@ public class QueenBoard{
   public int countSolutions(int row){
     int ans = 0;
     if (row == board.length){
-      ans += 1;
+      return 1;
     }
       for (int i = 0; i < board.length; i++){
         if (addQueen(row, i)){
-          return ans + countSolutions(row + 1);
+          ans += countSolutions(row + 1);
+        } else {
+          removeQueen(row, i);
         }
-        
+
 
       }
-      removeQueen(row, i);
+
       return ans;
     }
 
