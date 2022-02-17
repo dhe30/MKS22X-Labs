@@ -94,6 +94,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
+    for (int i = 0; i < board.length; i++){
+      for (int a = 0; a < board.length; a++){
+        if (board[i][a] != 0){
+          throw new IllegalStateException("Board already solved");
+        }
+      }
+    }
     return solve(0);
   }
 
