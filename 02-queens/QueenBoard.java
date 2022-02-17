@@ -116,7 +116,7 @@ public class QueenBoard{
             Text.wait(delay);
           }
           if (solve(row + 1)){
-            System.out.println("true");
+            
             return true;
           }
           removeQueen(row, i);
