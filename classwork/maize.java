@@ -3,12 +3,11 @@ import java.io.FileNotFoundException;
 import java.util.*;
 public class maize{
   public static char[][] masePutterInner(String filee) throws FileNotFoundException{
-    ArrayList<String> store = new 
+    ArrayList<String> store = new ArrayList<String>();
     File file = new File(filee);
     Scanner input = new Scanner(file);
     while (input.hasNextLine()){
-      store += input.nextLine() + "/n";
-      length += 1;
+      store.add(input.nextLine());
     }
     input.close();
   }
