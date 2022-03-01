@@ -31,7 +31,11 @@ public class Maze{
     input.close();
     maze = new char[store.size()][];
     for (int i = 0; i < store.size(); i++){
-      maze[i] = store[i].toCharArray();
+      char[] b = new char[store.get(i).length()];
+      for (int a = 0; a < store.get(i).length(); a++){
+        b[a] = store.get(i).charAt(a);
+      }
+      maze[i] = b;
     }
     for (int i = 0; i < maze.length; i++){
       for (int a = 0; a < maze[i].length; a++){
@@ -73,7 +77,9 @@ public class Maze{
       for (int a = 0; a < maze[i].length; a++){
         ans += maze[i][a];
         }
+        ans += "\n";
       }
+      return ans;
     }
   //
   // /*Wrapper Solve Function returns the helper function
@@ -104,18 +110,36 @@ public class Maze{
   // All visited spots that were not part of the solution are changed to '.'
   // All visited spots that are part of the solution are changed to '@'
   // */
-  // private int solve(int row, int col){ //you can add more parameters since this is private
-  //   //automatic animation! You are welcome.
-  //   if(animate){
-  //     gotoTop();
-  //     System.out.println(this);
-  //     wait(50);
-  //   }
-  //
-  //   //COMPLETE SOLVE
-  //   return -1; //so it compiles
-  // }
+  private int solve(int row, int col){ //you can add more parameters since this is private
+    //automatic animation! You are welcome.
+    if(animate){
+      gotoTop();
+      System.out.println(this);
+      wait(50);
+    }
+    int total = 0;
+    //COMPLETE SOLVE
+    if ((row > 0 && row < maze.length && col > 0 && col < maze[0].length)){
+      if (maze[row][col] == 'E'){
+        return total;
+      } else {
+        if solve(row - 1, col);
+        solve(row + 1, col);
+        solve(row, col - 1);
+        solve(row, col + 1);
+      }
+    }
+    return -1; //so it compiles
+  }
   public static void main(String[] args){
+    try{
+      Maze a = new Maze("maze1");
+      System.out.println(a);
+      System.out.println(a.startCol);
+      System.out.println(a.startRow);
+    } catch (FileNotFoundException e){
+      System.out.println("yes");
+    }
 
   }
 }
