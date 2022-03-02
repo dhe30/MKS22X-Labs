@@ -120,7 +120,7 @@ public class Maze{
     //COMPLETE SOLVE
     if ((row >= 0 && row < maze.length && col >= 0 && col < maze[0].length)){
       if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@'){
-        System.out.println("hit" + row + " " + col);
+        System.out.println("hit " + row + " " + col);
         return -1;
       } else if (maze[row][col] == 'E'){
         return 1;
