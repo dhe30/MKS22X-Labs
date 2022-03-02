@@ -112,41 +112,49 @@ public class Maze{
   // */
   private int solve(int row, int col){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
-    if(animate){
-      gotoTop();
-      System.out.println(this);
-      wait(10);
-    }
     //COMPLETE SOLVE
-    if ((row >= 0 && row < maze.length && col >= 0 && col < maze[0].length)){
+
       if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@'){
-        System.out.println("hit " + row + " " + col);
         return -1;
       } else if (maze[row][col] == 'E'){
-        return 1;
+        return 0;
       } else {
         maze[row][col] = '@';
-        if (solve(row - 1, col) > -1){
-          return 1 + solve(row - 1, col);
+        if(animate){
+          gotoTop();
+          System.out.println(this);
+          wait(25);
         }
-        else if (solve(row, col + 1) > -1){
-          return 1 + solve(row, col + 1);
+        int o = solve(row - 1, col);
+        if (o > -1){
+          return 1 + o;
         }
-        else if (solve(row + 1, col) > -1){
-          return 1 + solve(row + 1,col);
+        o = solve(row, col + 1);
+        if (o > -1){
+          return 1 + o;
         }
-        else if (solve(row, col - 1) > -1){
-          return 1 + solve(row,col - 1);
+        o = solve(row + 1, col);
+        if (o > -1){
+          return 1 + o;
+        }
+        o = solve(row, col - 1);
+        if (o > -1){
+          return 1 + o;
         }
           maze[row][col] = '.';
+          if(animate){
+            gotoTop();
+            System.out.println(this);
+            wait(25);
+          }
 
       }
-    }
+
     return -1; //so it compiles
   }
   public static void main(String[] args){
     try{
-      Maze a = new Maze("maze4");
+      Maze a = new Maze("maze5");
       a.setAnimate(true);
 
       System.out.println(a.startCol);
