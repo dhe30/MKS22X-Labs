@@ -47,27 +47,27 @@ public class Maze{
     }
   }
 
-  // private void wait(int millis){
-  //   try {
-  //     Thread.sleep(millis);
-  //   }
-  //   catch (InterruptedException e) {
-  //   }
-  // }
-  //
-  // public void setAnimate(boolean b){
-  //   animate = b;
-  // }
-  //
-  // public static void clearTerminal(){
-  //   //erase terminal
-  //   System.out.println("\033[2J");
-  // }
-  // public static void gotoTop(){
-  //   //go to top left of screen
-  //   System.out.println("\033[1;1H");
-  // }
-  //
+  private void wait(int millis){
+    try {
+      Thread.sleep(millis);
+    }
+    catch (InterruptedException e) {
+    }
+  }
+
+  public void setAnimate(boolean b){
+    animate = b;
+  }
+
+  public static void clearTerminal(){
+    //erase terminal
+    System.out.println("\033[2J");
+  }
+  public static void gotoTop(){
+    //go to top left of screen
+    System.out.println("\033[1;1H");
+  }
+
   // /*Return the string that represents the maze.
   // It should look like the text file with some characters replaced.
   // */
@@ -86,15 +86,15 @@ public class Maze{
   // Note the helper function has the same name, but different parameters.
   // Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
   // */
-  // public int solve(){
-  //   //only clear the terminal if you are running animation
-  //   if(animate){
-  //     clearTerminal();
-  //   }
-  //   //start solving at the location of the s.
-  //   return solve(startRow,startCol);
-  //
-  // }
+  public int solve(){
+    //only clear the terminal if you are running animation
+    if(animate){
+      clearTerminal();
+    }
+    //start solving at the location of the s.
+    return solve(startRow,startCol);
+
+  }
   //
   // /*
   // Recursive Solve function:
@@ -115,28 +115,47 @@ public class Maze{
     if(animate){
       gotoTop();
       System.out.println(this);
-      wait(50);
+      wait(10);
     }
-    int total = 0;
     //COMPLETE SOLVE
-    if ((row > 0 && row < maze.length && col > 0 && col < maze[0].length)){
-      if (maze[row][col] == 'E'){
-        return total;
+    if ((row >= 0 && row < maze.length && col >= 0 && col < maze[0].length)){
+      if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@'){
+        System.out.println("hit" + row + " " + col);
+        return -1;
+      } else if (maze[row][col] == 'E'){
+        return 1;
       } else {
-        if solve(row - 1, col);
-        solve(row + 1, col);
-        solve(row, col - 1);
-        solve(row, col + 1);
+        maze[row][col] = '@';
+        if (solve(row - 1, col) > -1){
+          return 1 + solve(row - 1, col);
+        }
+        else if (solve(row, col + 1) > -1){
+          return 1 + solve(row, col + 1);
+        }
+        else if (solve(row + 1, col) > -1){
+          return 1 + solve(row + 1,col);
+        }
+        else if (solve(row, col - 1) > -1){
+          return 1 + solve(row,col - 1);
+        }
+          maze[row][col] = '.';
+
       }
     }
     return -1; //so it compiles
   }
   public static void main(String[] args){
     try{
-      Maze a = new Maze("maze1");
-      System.out.println(a);
+      Maze a = new Maze("maze4");
+      a.setAnimate(true);
+
       System.out.println(a.startCol);
       System.out.println(a.startRow);
+      int b = a.startRow;
+      int c = a.startCol;
+      System.out.println(a.solve());
+      System.out.println(a);
+
     } catch (FileNotFoundException e){
       System.out.println("yes");
     }
