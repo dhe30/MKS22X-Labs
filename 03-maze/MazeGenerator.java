@@ -12,6 +12,7 @@ public class MazeGenerator{
         maze[startrow][startcol] = ' ';
         int row = (int)(Math.random()*4);
         generate(maze, startrow + coor[row][0], startcol + coor[row][1]);
+        if()
       }
     }
   }
