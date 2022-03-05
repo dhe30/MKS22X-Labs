@@ -22,7 +22,7 @@ public class MazeGenerator{
       return fromFour(a,b,c+1);
     }
   }
-  public static void work(char[][]maze,int startrow,int startcol){
+  public static void workMaze(char[][]maze,int startrow,int startcol){
     if(startrow > 0 && startrow < maze.length - 1 && startcol > 0 && startcol < maze[0].length - 1){
       int openSpaces = 0;
       for (int i = 0; i < coor.length; i++){
@@ -34,16 +34,51 @@ public class MazeGenerator{
         maze[startrow][startcol] = ' ';
         int[] row = fromFour();
 
-        generate(maze, startrow + coor[row[0]][0], startcol + coor[row[0]][1]);
-        generate(maze, startrow + coor[row[1]][0], startcol + coor[row[1]][1]);
-        generate(maze, startrow + coor[row[2]][0], startcol + coor[row[2]][1]);
-        generate(maze, startrow + coor[row[3]][0], startcol + coor[row[3]][1]);
+        workMaze(maze, startrow + coor[row[0]][0], startcol + coor[row[0]][1]);
+        workMaze(maze, startrow + coor[row[1]][0], startcol + coor[row[1]][1]);
+        workMaze(maze, startrow + coor[row[2]][0], startcol + coor[row[2]][1]);
+        workMaze(maze, startrow + coor[row[3]][0], startcol + coor[row[3]][1]);
 
       }
     }
   }
+  // public static void sweepMaze(char[][] maze){
+  //   for (int i = 0; i < maze.length; i++){
+  //     for (int a = 0; a < maze[i].length){
+  //       if (maze[i][a] == '.' || maze[i][a] == 'E'){
+  //         maze[i][a] == ' ';
+  //       }
+  //     }
+  //   }
+  // }
   public static void generate(char[][]maze,int startrow,int startcol){
-    work(maze,startrow,startcol);
+    workMaze(maze,startrow,startcol);
+    maze[startrow][startcol] = 'S';
+    String a = "";
+    for (int i = 0; i < maze[1].length; i++){
+      a += maze[1][i];
+    }
+    int topL = a.indexOf(" ");
+    int topR = a.lastIndexOf(" ");
+    a = "";
+    for (int i = 0; i < maze[maze.length - 2].length; i++){
+      a += maze[maze.length - 2][i];
+    }
+    int BottomL = a.indexOf(" ");
+    int BottomR = a.lastIndexOf(" ");
+    if ((int)(Math.random()*2) == 0){
+      if ((int)(Math.random()*2) == 0){
+        maze[1][topL] = 'E';
+      } else{
+        maze[1][topR] = 'E';
+      }
+    } else {
+      if ((int)(Math.random()*2) == 0){
+        maze[maze.length - 2][BottomL] = 'E';
+      } else{
+        maze[maze.length - 2][BottomR] = 'E';
+      }
+    }
   }
   public static void main (String[] args){
     char[][] c = new char[12][12];
