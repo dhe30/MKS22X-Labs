@@ -1,10 +1,9 @@
 import java.io.*;
 import java.util.*;
-
 public class MazeGenerator{
   public static final int[][] coor = {{0,1},{0,-1},{1,0},{-1,0}};
   public static int[] fromFour(){
-    // returns an int array with 0-3 in a random order
+    // wrapper
     ArrayList<Integer> a = new ArrayList<Integer>();
     for (int i = 0; i < 4; i++){
       a.add(i);
@@ -13,6 +12,7 @@ public class MazeGenerator{
     return fromFour(a,b,0);
   }
   public static int[] fromFour(ArrayList<Integer> a, int[] b, int c){
+    // returns an int array with 0-3 in a random order
     if(a.size() == 0){
       return b;
     } else {
@@ -22,7 +22,7 @@ public class MazeGenerator{
       return fromFour(a,b,c+1);
     }
   }
-  public static void generate(char[][]maze,int startrow,int startcol){
+  public static void work(char[][]maze,int startrow,int startcol){
     if(startrow > 0 && startrow < maze.length - 1 && startcol > 0 && startcol < maze[0].length - 1){
       int openSpaces = 0;
       for (int i = 0; i < coor.length; i++){
@@ -31,7 +31,6 @@ public class MazeGenerator{
         }
       }
       if (openSpaces < 2){
-        //System.out.println("row: " + startrow +  " col: " + startcol);
         maze[startrow][startcol] = ' ';
         int[] row = fromFour();
 
@@ -39,30 +38,15 @@ public class MazeGenerator{
         generate(maze, startrow + coor[row[1]][0], startcol + coor[row[1]][1]);
         generate(maze, startrow + coor[row[2]][0], startcol + coor[row[2]][1]);
         generate(maze, startrow + coor[row[3]][0], startcol + coor[row[3]][1]);
-        // generate(maze, startrow - 1, startcol, b);
-        // // if(maze[startrow - 1][startcol] != ' '){
-        // //   //maze[startrow][startcol]= (char)b;
-        // // }
-        // generate(maze, startrow, startcol - 1, b+1);
-
-        // generate(maze, startrow + coor[row[0]][0], startcol + coor[row[0]][1]);
-        // if(maze[startrow + coor[row[0]][0]][startcol + coor[row[0]][1]] != ' '){
-        //   System.out.println("row: " + startrow +  " col: " + startcol);
-        //   generate(maze, startrow + coor[row[1]][0], startcol + coor[row[1]][1]);
-        //   if(maze[startrow + coor[row[1]][0]][startcol + coor[row[1]][1]] != ' '){
-        //     System.out.println("2row: " + startrow +  " col: " + startcol);
-        //     generate(maze, startrow + coor[row[2]][0], startcol + coor[row[2]][1]);
-        //     if(maze[startrow + coor[row[2]][0]][startcol + coor[row[2]][1]] != ' '){
-        //       generate(maze, startrow + coor[row[3]][0], startcol + coor[row[3]][1]);
-        //     }
-        //   }
-        // }
 
       }
     }
   }
+  public static void generate(char[][]maze,int startrow,int startcol){
+    work(maze,startrow,startcol);
+  }
   public static void main (String[] args){
-    char[][] c = new char[8][8];
+    char[][] c = new char[12][12];
     for (int i = 0; i < c.length; i++){
       for (int a = 0; a < c[i].length; a++){
         c[i][a] = '#';
