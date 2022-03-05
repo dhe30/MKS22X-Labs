@@ -31,12 +31,20 @@ public class MazeGenerator{
         }
       }
       if (openSpaces < 2){
+        //System.out.println("row: " + startrow +  " col: " + startcol);
         maze[startrow][startcol] = ' ';
         int[] row = fromFour();
-        generate(maze, startrow - 1, startcol);
-        if(maze[startrow - 1][startcol] != ' '){
-          generate(maze, startrow, startcol - 1);
-        }
+
+        generate(maze, startrow + coor[row[0]][0], startcol + coor[row[0]][1]);
+        generate(maze, startrow + coor[row[1]][0], startcol + coor[row[1]][1]);
+        generate(maze, startrow + coor[row[2]][0], startcol + coor[row[2]][1]);
+        generate(maze, startrow + coor[row[3]][0], startcol + coor[row[3]][1]);
+        // generate(maze, startrow - 1, startcol, b);
+        // // if(maze[startrow - 1][startcol] != ' '){
+        // //   //maze[startrow][startcol]= (char)b;
+        // // }
+        // generate(maze, startrow, startcol - 1, b+1);
+
         // generate(maze, startrow + coor[row[0]][0], startcol + coor[row[0]][1]);
         // if(maze[startrow + coor[row[0]][0]][startcol + coor[row[0]][1]] != ' '){
         //   System.out.println("row: " + startrow +  " col: " + startcol);
