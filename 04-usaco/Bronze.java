@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class Bronze{
-  public static int solve(String filename) throws FileNotFoundException{
+  public static long solve(String filename) throws FileNotFoundException{
     File file = new File(filename);
     Scanner input = new Scanner(file);
     int[] controls = new int[4];
@@ -53,20 +53,17 @@ public class Bronze{
         maxi -= 1;
       }
     }
-    int depth = 0;
-    String ans = "";
+    long depth = 0l;
     for (int[] plot : land){
       for(int i = 0; i < plot.length; i++){
-        ans += plot[i] + " ";
         if (controls[2] - plot[i] > 0){
           depth += (controls[2] - plot[i]);
         }
       }
-      ans += "\n";
+
     }
-    System.out.println(ans);
-    System.out.println(depth);
-    return depth * 72 * 72;
+
+    return depth * 72l * 72l;
 
     // String ans = "";
     // for (int[] plot : land){
