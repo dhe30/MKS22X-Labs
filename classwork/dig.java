@@ -27,6 +27,6 @@ public class dig{
       }
       ans += "\n";
     }
-
+    System.out.println(ans);
   }
 }
