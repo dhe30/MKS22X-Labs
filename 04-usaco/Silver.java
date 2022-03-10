@@ -19,11 +19,11 @@ public class Silver{
         b[i] = 0;
       }
     }
-    dug(a,5,5,4);
+    dug(a,5,5,2);
     String ans = "";
     for (int[] b : a){
       for (int c : b){
-        ans += ("   " + c);
+        ans += (" " + c);
       }
       ans += "\n";
     }
