@@ -18,7 +18,7 @@ public class Bronze{
       int row = input.nextInt();
       int col = input.nextInt();
       int stomps = input.nextInt();
-      System.out.println("row: " + row + " col: " + col + " stomps: " + stomps);
+
       int maxi = 0;
       ArrayList<Integer> findMax = new ArrayList<Integer>();
       for (int a = 0; a < 3; a++){
@@ -32,7 +32,7 @@ public class Bronze{
           maxi = findMax.get(b);
         }
       }
-      System.out.println("max: " + maxi);
+    
       // String ans = "";
       // for (int b = 0; b < 9; b++){
       //   ans += findMax.get(b);
@@ -77,7 +77,7 @@ public class Bronze{
   }
   public static void main(String[] args){
     try{
-      System.out.println(solve("makelake.in"));
+      System.out.println(solve("makelake.2.in"));
     } catch (FileNotFoundException e){
       ;
     }
