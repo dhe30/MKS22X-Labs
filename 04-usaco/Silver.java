@@ -31,14 +31,15 @@ public class Silver{
         }
       }
     }
-    String ans = "";
-    for (int[] plot : field){
-      for (int i = 0; i < plot.length; i++){
-        ans += plot[i];
-      }
-      ans += "\n";
-    }
-    System.out.println(ans);
+
+    // String ans = "";
+    // for (int[] plot : field){
+    //   for (int i = 0; i < plot.length; i++){
+    //     ans += plot[i];
+    //   }
+    //   ans += "\n";
+    // }
+    // System.out.println(ans);
   }
   public static void main(String[] args){
     try{
