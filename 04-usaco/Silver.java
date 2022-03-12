@@ -1,6 +1,15 @@
 import java.util.*;
 import java.io.*;
 public class Silver{
+  public static long[][] copy(long[][] a){
+    long[][] ans = new long[a.length][a[0].length];
+    for (int i = 0; i < a.length; i++){
+      for (int c = 0; c < a[i].length; c++){
+        ans[i][c] = a[i][c];
+      }
+    }
+    return ans;
+  }
   // public static void dug(int[][] a, int startRow, int startCol, int max){
   //   if (startRow >= 0 && startRow < a.length && startCol >= 0 && startCol < a[0].length){
   //     if(max == 0){
@@ -23,18 +32,23 @@ public class Silver{
     for (int i = 0; i < rows; i++){
       findTrees[i] = input.next().toCharArray();
     }
-    int[][] field = new int[rows][cols];
+    long[][] field = new long[rows][cols];
     for (int i = 0; i < rows; i++){
       for (int a = 0; a < cols; a++){
         if(findTrees[i][a] == '*'){
-          field[i][a] = -1;
+          field[i][a] = -1l;
         }
       }
     }
-    field[input.nextInt() - 1][input.nextInt() - 1] = 1;
-
+    field[input.nextInt() - 1][input.nextInt() - 1] = 1l;
+    long[][] ref = copy(field);
+    long[][] touch = copy(field);
+    ref[input.nextInt() - 1][input.nextInt() - 1] = 2l;
+    for (int i = 0; i < time; i++){
+      ;
+    }
     String ans = "";
-    for (int[] plot : field){
+    for (long[] plot : field){
       for (int i = 0; i < plot.length; i++){
         ans += plot[i];
       }
