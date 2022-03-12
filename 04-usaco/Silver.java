@@ -41,7 +41,7 @@ public class Silver{
         }
       }
     }
-    time = 5;
+
     long[][] ref = copy(field);
     long[][] touch = copy(field);
     ref[input.nextInt() - 1][input.nextInt() - 1] = 1l;
@@ -62,18 +62,19 @@ public class Silver{
       ref = copy(touch);
       touch = copy(field);
     }
-    String ans = "";
-    for (long[] plot : ref){
-      for (int i = 0; i < plot.length; i++){
-        ans += plot[i] + " ";
-      }
-      ans += "\n";
-    }
+    long ans = ref[input.nextInt() - 1][input.nextInt() - 1];
+    // String ans = "";
+    // for (long[] plot : ref){
+    //   for (int i = 0; i < plot.length; i++){
+    //     ans += plot[i] + " ";
+    //   }
+    //   ans += "\n";
+    // }
     System.out.println(ans);
   }
   public static void main(String[] args){
     try{
-      solve("ctravel.1.in");
+      solve("ctravel.2.in");
     } catch (FileNotFoundException e){
       ;
     }
