@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class Silver{
+  public static final int[][] coor = {{1,0},{-1,0},{0,1},{0,-1}};
   public static long[][] copy(long[][] a){
     long[][] ans = new long[a.length][a[0].length];
     for (int i = 0; i < a.length; i++){
@@ -40,17 +41,31 @@ public class Silver{
         }
       }
     }
-    field[input.nextInt() - 1][input.nextInt() - 1] = 1l;
+    time = 5;
     long[][] ref = copy(field);
     long[][] touch = copy(field);
-    ref[input.nextInt() - 1][input.nextInt() - 1] = 2l;
+    ref[input.nextInt() - 1][input.nextInt() - 1] = 1l;
     for (int i = 0; i < time; i++){
-      ;
+      for (int row = 0; row < rows; row++){
+        for (int col = 0; col < cols; col++){
+          if (ref[row][col] == 0l){
+            for (int a = 0; a < coor.length; a++){
+              if(row + coor[a][0] >= 0 && row + coor[a][0] < field.length && col + coor[a][1] >= 0 && col + coor[a][1] < field[0].length){
+                if(ref[row + coor[a][0]][col + coor[a][1]] > 0l){
+                  touch[row][col] += ref[row + coor[a][0]][col + coor[a][1]];
+                }
+              }
+            }
+          }
+        }
+      }
+      ref = copy(touch);
+      touch = copy(field);
     }
     String ans = "";
-    for (long[] plot : field){
+    for (long[] plot : ref){
       for (int i = 0; i < plot.length; i++){
-        ans += plot[i];
+        ans += plot[i] + " ";
       }
       ans += "\n";
     }
