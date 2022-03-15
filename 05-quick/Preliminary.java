@@ -17,7 +17,7 @@ public class Preliminary{
 *@return the index of the final position of the pivot element.
 */
   public static int partition ( int [] data, int start, int end){
-    int picker = (int)(Math.random() * end - start + 1) + start;
+    int picker = (int)(Math.random() * (end - start + 1)) + start;
     System.out.println(data[picker] + "end: " + end);
     swarp(data, start, picker);
     int i = 0;
@@ -46,7 +46,7 @@ public class Preliminary{
       }
     }
 
-    //swarp(data, start + 1, start - i);
+    swarp(data, start, start - i);
     return start;
   }
   public static void main(String[] args){
