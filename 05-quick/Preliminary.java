@@ -44,15 +44,38 @@ public class Preliminary{
     swarp(data, start, start - i);
     return start;
   }
+
+  /*return the value that is the kth smallest value of the array.
+*@param data must have a length > 0
+*@param k is 0 to data.length-1 inclusive
+*@postcondition The array may be modified. */
+  public static int quickselect(int[] data, int k){
+    int start = 0;
+    int end = data.length - 1;
+    k -= 1;
+    int adam = partition(data, start, end);
+    while (adam != k){
+      if (adam > k){
+        end = adam - 1;
+        adam = partition(data, start, end);
+      } else {
+        start = adam + 1;
+        k -= adam;
+        adam = partition(data, start, end);
+      }
+    }
+    return data[adam];
+  }
   public static void main(String[] args){
     // int[] a = {1,2,3,4,5,99,99,99,99};
     // System.out.println(partition(a,0,a.length - 1));
     // System.out.println(Arrays.toString(a));
     int [] data = new int[] {993,994,995,4,3,2,1,0,997,998,999};
-    System.out.println("Original: "+Arrays.toString(data));
-    int pivot = partition( data , 3, 7);
-    System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
-    System.out.println("Modified: "+Arrays.toString(data));
-    System.out.println();
+    System.out.println(quickselect(data, 2));
+    // System.out.println("Original: "+Arrays.toString(data));
+    // int pivot = partition( data , 3, 7);
+    // System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
+    // System.out.println("Modified: "+Arrays.toString(data));
+    // System.out.println();
   }
 }
