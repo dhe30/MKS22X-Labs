@@ -1,3 +1,5 @@
+import java.util.*;
+import java.io.*;
 public class Preliminary{
   /*Modify the array such that:
 *1. A random index from start to end inclusive is chosen, the
@@ -10,8 +12,15 @@ public class Preliminary{
 *@return the index of the final position of the pivot element.
 */
   public static int partition ( int [] data, int start, int end){
-    if(start == end){
-      return start - 1;
-    } else if
+    int picker = (int)(Math.random() * end - start + 1) + start;
+    int store = data[picker];
+    data[picker] = data[start];
+    data[start] = store;
+    return store;
+  }
+  public static void main(String[] args){
+    int[] a = {999,99,9,0,1};
+    System.out.println(partition(a,0,a.length));
+    System.out.println(Arrays.toString(a));
   }
 }
