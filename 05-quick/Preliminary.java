@@ -18,7 +18,6 @@ public class Preliminary{
 */
   public static int partition ( int [] data, int start, int end){
     int picker = (int)(Math.random() * (end - start + 1)) + start;
-    System.out.println(data[picker] + "end: " + end);
     swarp(data, start, picker);
     int i = 0;
     boolean red = false;
@@ -26,22 +25,18 @@ public class Preliminary{
       if (data[start + 1] > data[start - i]){
         swarp(data, start + 1, end);
         end -= 1;
-        System.out.println(Arrays.toString(data) + "start: " + start + " end: " + end);
       } else if (data[start + 1] < data[start - i]){
         start += 1;
         i++;
-        System.out.println(Arrays.toString(data)  + "start: " + start + " end: " + end);
       } else {
         if (red){
           start += 1;
           red = false;
           i++;
-          System.out.println(Arrays.toString(data)  + "start: " + start + " end: " + end);
         } else {
           swarp(data, start + 1, end);
           end -= 1;
           red = true;
-          System.out.println(Arrays.toString(data)  + "start: " + start + " end: " + end);
         }
       }
     }
