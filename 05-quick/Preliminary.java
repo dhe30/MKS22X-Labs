@@ -1,6 +1,11 @@
 import java.util.*;
 import java.io.*;
 public class Preliminary{
+  public static void swarp(int[] a, int thisIndex, int thereIndex){
+    int store = a[thereIndex];
+    a[thereIndex] = a[thisIndex];
+    a[thisIndex] = store;
+  }
   /*Modify the array such that:
 *1. A random index from start to end inclusive is chosen, the
 * corresponding element is designated the pivot element.
@@ -16,11 +21,20 @@ public class Preliminary{
     int store = data[picker];
     data[picker] = data[start];
     data[start] = store;
-    return store;
+    while(start != end){
+      if (data[start + 1] > data[start]){
+        swarp(data, start + 1, end);
+        end -= 1;
+      } else {
+        swarp(data, start + 1, start);
+        start += 1;
+      }
+    }
+    return start;
   }
   public static void main(String[] args){
-    int[] a = {999,99,9,0,1};
-    System.out.println(partition(a,0,a.length));
+    int[] a = {1,2,3,4,5,6,7,8,99};
+    System.out.println(partition(a,0,a.length - 1));
     System.out.println(Arrays.toString(a));
   }
 }
