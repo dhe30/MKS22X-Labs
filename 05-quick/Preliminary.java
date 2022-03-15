@@ -18,9 +18,7 @@ public class Preliminary{
 */
   public static int partition ( int [] data, int start, int end){
     int picker = (int)(Math.random() * end - start + 1) + start;
-    int store = data[picker];
-    data[picker] = data[start];
-    data[start] = store;
+    swarp(data, start, picker);
     while(start != end){
       if (data[start + 1] > data[start]){
         swarp(data, start + 1, end);
