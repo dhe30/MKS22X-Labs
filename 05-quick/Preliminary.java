@@ -1,6 +1,13 @@
 import java.util.*;
 import java.io.*;
 public class Preliminary{
+  public static int[] copy(int[] a){
+    int[] ans = new int[a.length];
+    for (int i = 0; i < a.length; i++){
+      ans[i] = a[i];
+    }
+    return ans;
+  }
   public static void swarp(int[] a, int thisIndex, int thereIndex){
     int store = a[thereIndex];
     a[thereIndex] = a[thisIndex];
@@ -18,11 +25,13 @@ public class Preliminary{
 */
   public static int partition ( int [] data, int start, int end){
     int picker = (int)(Math.random() * (end - start + 1)) + start;
+    System.out.println(data[picker]);
     swarp(data, start, picker);
     int i = 0;
     boolean red = false;
     while(start != end){
       if (data[start + 1] > data[start - i]){
+
         swarp(data, start + 1, end);
         end -= 1;
       } else if (data[start + 1] < data[start - i]){
@@ -42,6 +51,7 @@ public class Preliminary{
     }
 
     swarp(data, start, start - i);
+    System.out.println(Arrays.toString(data) + "swap: " + start + "  with: " + (start - i));
     return start;
   }
 
@@ -57,21 +67,34 @@ public class Preliminary{
     while (adam != k){
       if (adam > k){
         end = adam - 1;
+        System.out.println(" start: " + start + " end: " + end + " k: " + k);
         adam = partition(data, start, end);
       } else {
         start = adam + 1;
         k -= adam;
+        System.out.println(" start: " + start + " end: " + end + " k: " + k);
         adam = partition(data, start, end);
       }
     }
+    System.out.println("end");
     return data[adam];
   }
   public static void main(String[] args){
-    // int[] a = {1,2,3,4,5,99,99,99,99};
+    int[] a = {1,2,3,4,5,99,99,99,99};
     // System.out.println(partition(a,0,a.length - 1));
     // System.out.println(Arrays.toString(a));
-    int [] data = new int[] {993,994,995,4,3,2,1,0,997,998,999};
-    System.out.println(quickselect(data, 2));
+    System.out.println(quickselect(a, 4));
+    int[] darta = new int [100000];
+    for (int i = 0; i < 100000; i++){
+      darta[i] = (int)(Math.random()*(100000 + 1));
+    }
+    int[] sort = copy(darta);
+    Arrays.sort(sort);
+    // if(sort[9999] == quickselect(darta, 9999)){
+    //   System.out.println("yes");
+    // } else {
+    //   System.out.println("no");
+    // }
     // System.out.println("Original: "+Arrays.toString(data));
     // int pivot = partition( data , 3, 7);
     // System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
