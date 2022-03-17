@@ -8,7 +8,7 @@ public class Preliminary{
     }
     return ans;
   }
-  public static void swarp(int[] a, int thisIndex, int thereIndex){
+  public static void swap(int[] a, int thisIndex, int thereIndex){
     int store = a[thereIndex];
     a[thereIndex] = a[thisIndex];
     a[thisIndex] = store;
@@ -25,12 +25,12 @@ public class Preliminary{
 */
   public static int partition ( int [] data, int start, int end){
     int picker = (int)(Math.random() * (end - start + 1)) + start;
-    swarp(data, start, picker);
+    swap(data, start, picker);
     int i = 0;
     boolean red = false;
     while(start != end){
       if (data[start + 1] > data[start - i]){
-        swarp(data, start + 1, end);
+        swap(data, start + 1, end);
         end -= 1;
       } else if (data[start + 1] < data[start - i]){
         start += 1;
@@ -41,17 +41,35 @@ public class Preliminary{
           red = false;
           i++;
         } else {
-          swarp(data, start + 1, end);
+          swap(data, start + 1, end);
           end -= 1;
           red = true;
         }
       }
     }
 
-    swarp(data, start, start - i);
+    swap(data, start, start - i);
     return start;
   }
-
+  public static int[] partitionDutch(int[] data,int lo, int hi){
+    int picker = (int)(Math.random() * (hi - lo + 1)) + lo;
+    swap(data, lo, picker);
+    int begin = lo;
+    int lt = lo + 1;
+    while(lo != hi){
+      if(data[lo + 1] == data[begin]){
+        lo++;
+      } else if(data[lo + 1] > data[begin]){
+        swap(data, lt, lo + 1);
+        lo++;
+        lt++;
+      } else if(data[lo + 1] < data[begin]){
+        swap(data, hi, lo + 1);
+        hi--;
+      }
+    }
+    return data;
+  }
   /*return the value that is the kth smallest value of the array.
 *@param data must have a length > 0
 *@param k is 0 to data.length-1 inclusive
@@ -87,21 +105,24 @@ public class Preliminary{
     // int[] data = {2,3,1,0,0};
     // quicksort(data);
     // System.out.println(Arrays.toString(data));
-    int[] darta = new int [1000000];
-    for (int i = 0; i < 1000000; i++){
-      darta[i] = (int)(Math.random()*(1000000 + 1));
-    }
-    int[] sort = copy(darta);
-    int[] testSort = copy(darta);
-    Arrays.sort(sort);
 
-    for (int a = 0; a < darta.length; a++){
-      if(sort[a] != testSort[a]){
-        System.out.println("NO!");
-      } else{
-        System.out.println(sort[a] + " " + testSort[a]);
-      }
-    }
+    // int[] darta = new int [1000000];
+    // for (int i = 0; i < 1000000; i++){
+    //   darta[i] = (int)(Math.random()*(1000000 + 1));
+    // }
+    // int[] sort = copy(darta);
+    // int[] testSort = copy(darta);
+    // Arrays.sort(sort);
+    //
+    // for (int a = 0; a < darta.length; a++){
+    //   if(sort[a] != testSort[a]){
+    //     System.out.println("NO!");
+    //   } else{
+    //     System.out.println(sort[a] + " " + testSort[a]);
+    //   }
+    // }
+    int[] data = {0,1,2,0,6,1,0};
+      System.out.println(Arrays.toString(partitionDutch(data, 0, data.length - 1)));
   }
     // System.out.println("Original: "+Arrays.toString(data));
     // int pivot = partition( data , 3, 7);
