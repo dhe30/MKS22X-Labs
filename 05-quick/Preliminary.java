@@ -58,16 +58,21 @@ public class Preliminary{
     int lt = lo + 1;
     while(lo != hi){
       if(data[lo + 1] == data[begin]){
+        System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi + " begin: " + begin);
         lo++;
       } else if(data[lo + 1] > data[begin]){
+        System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi);
+        swap(data, hi, lo + 1);
+        hi--;
+      } else if(data[lo + 1] < data[begin]){
+        System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi);
         swap(data, lt, lo + 1);
         lo++;
         lt++;
-      } else if(data[lo + 1] < data[begin]){
-        swap(data, hi, lo + 1);
-        hi--;
       }
     }
+    System.out.println(begin);
+    swap(data, begin, lt);
     return data;
   }
   /*return the value that is the kth smallest value of the array.
@@ -121,7 +126,7 @@ public class Preliminary{
     //     System.out.println(sort[a] + " " + testSort[a]);
     //   }
     // }
-    int[] data = {0,1,2,0,6,1,0};
+    int[] data = {0,1,2,0,6,1,0,6,2};
       System.out.println(Arrays.toString(partitionDutch(data, 0, data.length - 1)));
   }
     // System.out.println("Original: "+Arrays.toString(data));
