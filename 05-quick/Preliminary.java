@@ -54,25 +54,24 @@ public class Preliminary{
   public static int[] partitionDutch(int[] data,int lo, int hi){
     int picker = (int)(Math.random() * (hi - lo + 1)) + lo;
     swap(data, lo, picker);
-    int begin = lo;
-    int lt = lo + 1;
+    int begin = data[lo];
+    int lt = lo;
     while(lo != hi){
-      if(data[lo + 1] == data[begin]){
+      if(data[lo] == begin){
         System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi + " begin: " + begin);
         lo++;
-      } else if(data[lo + 1] > data[begin]){
+      } else if(data[lo] > begin){
         System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi);
-        swap(data, hi, lo + 1);
+        swap(data, hi, lo);
         hi--;
-      } else if(data[lo + 1] < data[begin]){
+      } else if(data[lo] < begin){
         System.out.println(Arrays.toString(data) + " lo: " + lo + " lt: " + lt + " hi: " + hi);
-        swap(data, lt, lo + 1);
+        swap(data, lt, lo);
         lo++;
         lt++;
       }
     }
-    System.out.println(begin);
-    swap(data, begin, lt);
+    System.out.println(Arrays.toString(data) +" begin: "+ begin + " lt: " + lt + " lo: " + lo);
     return data;
   }
   /*return the value that is the kth smallest value of the array.
