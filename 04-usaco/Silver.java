@@ -23,7 +23,7 @@ public class Silver{
   //       dug(a, startRow, startCol + 1, max - 1);
   //     }
   //   }
-  public static void solve(String filename) throws FileNotFoundException{
+  public static long solve(String filename) throws FileNotFoundException{
     File file = new File(filename);
     Scanner input = new Scanner(file);
     int rows = input.nextInt();
@@ -70,11 +70,11 @@ public class Silver{
     //   }
     //   ans += "\n";
     // }
-    System.out.println(ans);
+    return ans;
   }
   public static void main(String[] args){
     try{
-      solve("ctravel.2.in");
+      System.out.println(solve("ctravel.2.in"));
     } catch (FileNotFoundException e){
       ;
     }
