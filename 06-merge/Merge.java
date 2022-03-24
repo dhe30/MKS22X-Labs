@@ -71,6 +71,8 @@ public class Merge{
         right[a] = data[i];
         a++;
       }
+      left = mergesortH(left);
+      right = mergesortH(right);
       return merge(left, right);
     }
     return data; //so this compiles
@@ -88,9 +90,9 @@ public class Merge{
     }
   }
   public static void main(String[] args){
-    int[] a = {1,2,3,4,27};
+    int[] a = {1,2,3,4,27,5,6,7,8};
     int[] b = {5,6,7,8};
-    int[] c = merge(a,b);
-    System.out.println(Arrays.toString(c));
+    mergesort(a);
+    System.out.println(Arrays.toString(a));
   }
 }
