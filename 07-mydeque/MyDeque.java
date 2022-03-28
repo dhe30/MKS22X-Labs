@@ -45,7 +45,13 @@ public class MyDeque<E>{
         end = size();
         data = d;
       }
-      public String toString(){ }
+      public String toString(){
+        //Test
+        String a = "[";
+        for(int i = 0; i < data.length; i++){
+          a += data[i] + ", ";
+        }
+      }
       public void addFirst(E element){ }
       public void addLast(E element){ }
       public E removeFirst(){ }
