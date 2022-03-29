@@ -1,3 +1,4 @@
+import java.util.*;
 public class tester{
   public static void main(String[] args){
     // MyDeque<Integer> a = new MyDeque<Integer>();
@@ -7,16 +8,10 @@ public class tester{
     // }
     // System.out.println(a + " start: " + a.getStart() + " end: " + a.getEnd());
     MyDeque<Integer> a = new MyDeque<Integer>(0);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
-    a.addLast(4);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
-    a.addLast(4);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
-    a.addLast(4);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
-    a.addLast(4);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
-    a.addFirst(4);
-    System.out.println(a + " " + a.toStringTest() + " start: " + a.getStart() + " end: " + a.getEnd());
+    try {
+      a.addFirst(null);
+    } catch (NoSuchElementException e){
+      System.out.println("uyes");
+    }
   }
 }

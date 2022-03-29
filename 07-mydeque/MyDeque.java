@@ -92,6 +92,9 @@ public class MyDeque<E>{
     return a.substring(0, a.length() - 2) + "]";
   }
   public void addFirst(E element){
+    if(element == (null)){
+      throw new NullPointerException();
+    }
     if (size() == data.length){
       resize();
     }
@@ -112,6 +115,9 @@ public class MyDeque<E>{
       size += 1;
   }
   public void addLast(E element){
+    if(element == (null)){
+      throw new NullPointerException();
+    }
     if (size() == data.length){
       resize();
     }
