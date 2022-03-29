@@ -25,26 +25,30 @@ public class MyDeque<E>{
   private void resize(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[(data.length * 2) + 1];
-    int a = 0;
-    if(start <= end){
-      for(int i = start; i <= end; i++){
-        d[a] = data[i];
-        a++;
-      }
+    if(size == 0){
+      data = d;
     } else {
-      for(int i = start; i < data.length; i++){
-        d[a] = data[i];
-        a++;
+      int a = 0;
+      if(start <= end){
+        for(int i = start; i <= end; i++){
+          d[a] = data[i];
+          a++;
+        }
+      } else {
+        for(int i = start; i < data.length; i++){
+          d[a] = data[i];
+          a++;
+        }
+        for(int i = 0; i <= end; i++){
+          d[a] = data[i];
+          a++;
+        }
       }
-      for(int i = 0; i <= end; i++){
-        d[a] = data[i];
-        a++;
-      }
+      data = d;
+      end = size() - 1;
+      start = 0;
     }
-    data = d;
-    end = size() - 1;
-    start = 0;
-    System.out.println(" dardarda " + toString() + " start: " + getStart() + " end: " + getEnd());
+    //System.out.println(" dardarda " + toString() + " start: " + getStart() + " end: " + getEnd());
   }
   public String toString(){
     //Test
@@ -74,6 +78,17 @@ public class MyDeque<E>{
       }
     }
     return adam.substring(0, adam.length() - 2) + "]";
+  }
+  public String toStringTest(){
+    //Test
+    String a = "[";
+    if (size() == 0){
+      return a + "]";
+    }
+    for(int i = 0; i < data.length; i++){
+      a += data[i] + ", ";
+    }
+    return a.substring(0, a.length() - 2) + "]";
   }
   public void addFirst(E element){
     if (size() == data.length){
