@@ -42,22 +42,38 @@ public class MyDeque<E>{
       }
     }
     data = d;
-    if(size() != 1){
-      end = size();
-      start = 0;
-    }
-    //System.out.println(" dardarda " + toString() + " start: " + getStart() + " end: " + getEnd());
+    end = size() - 1;
+    start = 0;
+    System.out.println(" dardarda " + toString() + " start: " + getStart() + " end: " + getEnd());
   }
   public String toString(){
     //Test
-    String a = "[";
+    // String a = "[";
+    // if (size() == 0){
+    //   return a + "]";
+    // }
+    // for(int i = 0; i < data.length; i++){
+    //   a += data[i] + ", ";
+    // }
+    // return a.substring(0, a.length() - 2) + "]";
+
+    String adam = "[";
     if (size() == 0){
-      return a + "]";
+      return adam + "]";
     }
-    for(int i = 0; i < data.length; i++){
-      a += data[i] + ", ";
+    if(start <= end){
+      for(int i = start; i <= end; i++){
+        adam += data[i] + ", ";
+      }
+    } else {
+      for(int i = start; i < data.length; i++){
+        adam += data[i] + ", ";
+      }
+      for(int i = 0; i <= end; i++){
+        adam += data[i] + ", ";
+      }
     }
-    return a.substring(0, a.length() - 2) + "]";
+    return adam.substring(0, adam.length() - 2) + "]";
   }
   public void addFirst(E element){
     if (size() == data.length){
@@ -130,6 +146,10 @@ public class MyDeque<E>{
   public int getStart(){
     return start;
   }
-  // public E getFirst(){ }
-  // public E getLast(){ }
+  public E getFirst(){
+    return data[start];
+  }
+  public E getLast(){
+    return data[end];
+  }
 }
