@@ -41,9 +41,12 @@ public class MyDeque<E>{
         a++;
       }
     }
-    start = 0;
-    end = size();
     data = d;
+    if(size() != 1){
+      end = size();
+      start = 0;
+    }
+    //System.out.println(" dardarda " + toString() + " start: " + getStart() + " end: " + getEnd());
   }
   public String toString(){
     //Test
@@ -60,6 +63,7 @@ public class MyDeque<E>{
     if (size() == data.length){
       resize();
     }
+    //System.out.println(" dar " + toString() + " start: " + getStart() + " end: " + getEnd());
     if (size == 0){
       data[0] = element;
       start = 0;
@@ -104,9 +108,28 @@ public class MyDeque<E>{
         start += 1;
       }
     }
+    size -= 1;
     return adam;
   }
-  // public E removeLast(){ }
+  public E removeLast(){
+    E adam = data[end];
+    data[end] = null;
+    if (start != end){
+      if(end - 1 < 0){
+        end = data.length - 1;
+      } else {
+        end -= 1;
+      }
+    }
+    size -= 1;
+    return adam;
+  }
+  public int getEnd(){
+    return end;
+  }
+  public int getStart(){
+    return start;
+  }
   // public E getFirst(){ }
   // public E getLast(){ }
 }
