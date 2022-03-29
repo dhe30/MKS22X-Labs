@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size;
@@ -162,9 +163,15 @@ public class MyDeque<E>{
     return start;
   }
   public E getFirst(){
+    if (size == 0){
+      throw new NoSuchElementException("The array is empty.");
+    }
     return data[start];
   }
   public E getLast(){
+    if (size == 0){
+      throw new NoSuchElementException("The array is empty.");
+    }
     return data[end];
   }
 }
