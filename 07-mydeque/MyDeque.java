@@ -72,8 +72,8 @@ public class MyDeque<E>{
         data[start - 1] = element;
         start -= 1;
       }
-      size += 1;
     }
+      size += 1;
   }
   public void addLast(E element){
     if (size() == data.length){
@@ -91,10 +91,21 @@ public class MyDeque<E>{
         data[end + 1] = element;
         end += 1;
       }
-      size += 1;
     }
+      size += 1;
   }
-  // public E removeFirst(){ }
+  public E removeFirst(){
+    E adam = data[start];
+    data[start] = null;
+    if (start != end){
+      if(start + 1 > data.length - 1){
+        start = 0;
+      } else {
+        start += 1;
+      }
+    }
+    return adam;
+  }
   // public E removeLast(){ }
   // public E getFirst(){ }
   // public E getLast(){ }

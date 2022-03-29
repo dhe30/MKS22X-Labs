@@ -4,5 +4,12 @@ public class tester{
     a.addFirst(5);
     a.addFirst(5);
     System.out.println(a);
+    a.removeFirst();
+    System.out.println(a);
+    a.removeFirst();
+    System.out.println(a);
+    a.addFirst(5);
+    System.out.println(a);
+    a.removeFirst();
   }
 }
