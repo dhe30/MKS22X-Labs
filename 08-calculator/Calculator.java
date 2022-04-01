@@ -12,30 +12,86 @@ public class Calculator{
   public static double eval(String s){
     ArrayDeque<Double> a = new ArrayDeque<Double>();
     Scanner input = new Scanner(s);
+    double first, second, porcupine;
     while(input.hasNext()){
       String part = input.next();
-      if (part.equals("+")){
-        if (a.size() < 2){
-          //exception
-        }
-        double first = a.removeLast();
-      } else if(part.equals("-")){
-
-      } else if(part.equals("*")){
-
-      } else if(part.equals("/")){
-
-      } else if(part.equals("%")){
-
-      } else if(part.indexOf(".") > 0){
-        a.addLast(Double.parseDouble(part));
-      } else {
-        a.addLast((double)Integer.parseInt(part));
+      switch (part) {
+        case "+" : if (a.size() < 2){
+                      throw new IllegalArgumentException("too many operands");
+                    }
+                    second = a.removeLast();
+                    first = a.removeLast();
+                    porcupine = first + second;
+                    a.addLast(porcupine);
+                    break;
+                   case "-" : if (a.size() < 2){
+                                throw new IllegalArgumentException("too many operands");
+                              }
+                              second = a.removeLast();
+                              first = a.removeLast();
+                              porcupine = first - second;
+                              a.addLast(porcupine);
+                              break;
+                             case "*" : if (a.size() < 2){
+                                          throw new IllegalArgumentException("too many operands");
+                                        }
+                                        second = a.removeLast();
+                                        first = a.removeLast();
+                                        porcupine = first * second;
+                                        a.addLast(porcupine);
+                                        break;
+                                       case "/" : if (a.size() < 2){
+                                                    throw new IllegalArgumentException("too many operands");
+                                                  }
+                                                  second = a.removeLast();
+                                                  first = a.removeLast();
+                                                  porcupine = first / second;
+                                                  a.addLast(porcupine);
+                                                  break;
+                                                 case "%" : if (a.size() < 2){
+                                                               throw new IllegalArgumentException("too many operands");
+                                                             }
+                                                             second = a.removeLast();
+                                                             first = a.removeLast();
+                                                             porcupine = first % second;
+                                                             a.addLast(porcupine);
+                                                             break;
+                                                            default : if(part.indexOf(".") > 0){
+                                                                        a.addLast(Double.parseDouble(part));
+                                                                      } else {
+                                                                        a.addLast((double)Integer.parseInt(part));
+                                                                      }
       }
     }
-    return -1;
+
+    //   if (part.equals("+")){
+    //     if (a.size() < 2){
+    //       throw new IllegalArgumentException("too many operands");
+    //     }
+    //     first = a.removeLast();
+    //     second = a.removeLast();
+    //     porcupine = first + second;
+    //     a.addLast(porcupine);
+    //   } else if(part.equals("-")){
+    //
+    //   } else if(part.equals("*")){
+    //
+    //   } else if(part.equals("/")){
+    //
+    //   } else if(part.equals("%")){
+    //
+    //   } else if(part.indexOf(".") > 0){
+    //     a.addLast(Double.parseDouble(part));
+    //   } else {
+    //     a.addLast((double)Integer.parseInt(part));
+    //   }
+    // }
+    if (a.size() > 1 || a.size() < 1){
+      throw new IllegalArgumentException("too few operands");
+    }
+    return a.getLast();
   }
   public static void main(String[] args){
-    System.out.println((int)Double.parseDouble("3.0"));
+    //System.out.println(eval("8 2 + 99 9 - * 2 + 9 -"));
   }
 }
