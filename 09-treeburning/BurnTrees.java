@@ -2,7 +2,7 @@ import java.util.*;
 public class BurnTrees{
   private int[][]map;
   private int ticks;
-  private Queue<int[]> porcupine;
+  private Queue<int[]> frontier;
   private static final int TREE = 2;
   private static final int FIRE = 1;
   private static final int ASH = 3;
@@ -38,7 +38,7 @@ public class BurnTrees{
    */
   public BurnTrees(int width,int height, double density){
     map = new int[height][width];
-    porcupine = new ArrayDeque<int[]>();
+    frontier = new ArrayDeque<int[]>();
     for(int r=0; r<map.length; r++ ){
       for(int c=0; c<map[r].length; c++ ){
         if(Math.random() < density){
@@ -59,7 +59,7 @@ public class BurnTrees{
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
-        porcupine.add(new int[]{i,0});
+        frontier.add(new int[]{i,0});
       }
     }
   }
