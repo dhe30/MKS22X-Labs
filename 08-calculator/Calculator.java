@@ -10,6 +10,9 @@ public class Calculator{
   *        Either "too many operands" or "too few operands for operation _" replace _ with +,- etc.
   */
   public static double eval(String s){
+    if (s.length() == 0){
+      throw new IllegalArgumentException("too few operands");
+    }
     ArrayDeque<Double> a = new ArrayDeque<Double>();
     Scanner input = new Scanner(s);
     double first, second, porcupine;
@@ -17,7 +20,7 @@ public class Calculator{
       String part = input.next();
       switch (part) {
         case "+" : if (a.size() < 2){
-                      throw new IllegalArgumentException("too many operands");
+                      throw new IllegalArgumentException("too few operands");
                     }
                     second = a.removeLast();
                     first = a.removeLast();
@@ -25,7 +28,7 @@ public class Calculator{
                     a.addLast(porcupine);
                     break;
                    case "-" : if (a.size() < 2){
-                                throw new IllegalArgumentException("too many operands");
+                                throw new IllegalArgumentException("too few operands");
                               }
                               second = a.removeLast();
                               first = a.removeLast();
@@ -33,7 +36,7 @@ public class Calculator{
                               a.addLast(porcupine);
                               break;
                              case "*" : if (a.size() < 2){
-                                          throw new IllegalArgumentException("too many operands");
+                                          throw new IllegalArgumentException("too few operands");
                                         }
                                         second = a.removeLast();
                                         first = a.removeLast();
@@ -41,7 +44,7 @@ public class Calculator{
                                         a.addLast(porcupine);
                                         break;
                                        case "/" : if (a.size() < 2){
-                                                    throw new IllegalArgumentException("too many operands");
+                                                    throw new IllegalArgumentException("too few operands");
                                                   }
                                                   second = a.removeLast();
                                                   first = a.removeLast();
@@ -49,7 +52,7 @@ public class Calculator{
                                                   a.addLast(porcupine);
                                                   break;
                                                  case "%" : if (a.size() < 2){
-                                                               throw new IllegalArgumentException("too many operands");
+                                                               throw new IllegalArgumentException("too few operands");
                                                              }
                                                              second = a.removeLast();
                                                              first = a.removeLast();
@@ -61,6 +64,7 @@ public class Calculator{
                                                                       } else {
                                                                         a.addLast((double)Integer.parseInt(part));
                                                                       }
+                                                                      break;
       }
     }
 
@@ -87,7 +91,7 @@ public class Calculator{
     //   }
     // }
     if (a.size() > 1 || a.size() < 1){
-      throw new IllegalArgumentException("too few operands");
+      throw new IllegalArgumentException("too many operands");
     }
     return a.getLast();
   }
