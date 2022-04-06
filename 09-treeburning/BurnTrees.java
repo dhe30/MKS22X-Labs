@@ -29,7 +29,7 @@ public class BurnTrees{
     ticks++;//leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
-    int initial = frontier.size()
+    int initial = frontier.size();
     for(int i = 0; i < initial; i++){
       int[] plot = frontier.remove();
       map[plot[0]][plot[1]] = ASH;
@@ -37,7 +37,7 @@ public class BurnTrees{
         if(plot[0] + coor[a][0] >=0 && plot[0] + coor[a][0] < map.length && plot[1] + coor[a][1] >= 0 && plot[1] + coor[a][1] < map[0].length){
           if(map[plot[0] + coor[a][0]][plot[1] + coor[a][1]] == TREE){
             map[plot[0] + coor[a][0]][plot[1] + coor[a][1]] = FIRE;
-            frontier.add()
+            frontier.add(new int[]{plot[0] + coor[a][0], plot[1] + coor[a][1]});
           }
         }
       }
