@@ -9,7 +9,14 @@ public class BurnTrees{
   private static final int ASH = 3;
   private static final int SPACE = 0;
 
-
+  public static double averageOfNRuns(int n, int size, double density){
+    int total = 0;
+    for (int i = 0; i < n; i++){
+      BurnTrees acre = new BurnTrees(size, size, density);
+      total += acre.run();
+    }
+    return (double)total/n;
+  }
   /*Determine if the simulation is still burning
    *@return false if any fires are still burning, true otherwise
    */
@@ -17,7 +24,7 @@ public class BurnTrees{
     //YOU MUST IMPLEMENT THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
     //HINT: do not check the board for fire which is an n^2 operation
-    return false;//placeholder for compilation purposes
+    return frontier.size() == 0;//placeholder for compilation purposes
   }
 
 
