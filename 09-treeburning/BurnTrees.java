@@ -9,14 +9,6 @@ public class BurnTrees{
   private static final int ASH = 3;
   private static final int SPACE = 0;
 
-  public static double averageOfNRuns(int n, int size, double density){
-    int total = 0;
-    for (int i = 0; i < n; i++){
-      BurnTrees acre = new BurnTrees(size, size, density);
-      total += acre.run();
-    }
-    return (double)total/n;
-  }
   /*Determine if the simulation is still burning
    *@return false if any fires are still burning, true otherwise
    */
@@ -84,9 +76,14 @@ public class BurnTrees{
       }
     }
   }
-
-
-
+  public static double averageOfNRuns(int n, int size, double density){
+    int total = 0;
+    for (int i = 0; i < n; i++){
+      BurnTrees acre = new BurnTrees(size, size, density);
+      total += acre.run();
+    }
+    return (double)total/n;
+  }
     public static void main(String[]args){
       int WIDTH = 20;
       int HEIGHT = 20;
@@ -105,10 +102,16 @@ public class BurnTrees{
 
       int ans = b.animate(DELAY);//animate all screens
       System.out.println(ans);//print the final answer
-
+      double density = 0.05;
+      int size = 1000;
+      int n = 100;
+      for(int i = 0; i < 19; i++){
+        System.out.println("Density: " + density + " repetitions: " + n + " Boardsize: " + size + " result: " + averageOfNRuns(n, size, density));
+        density += 0.05;
       //int ans = b.outputAll();//print all screens one after another
       //System.out.println(ans);//print the final answer
     }
+  }
 
 
 
