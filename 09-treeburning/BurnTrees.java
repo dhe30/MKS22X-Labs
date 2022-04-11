@@ -89,6 +89,7 @@ public class BurnTrees{
       int HEIGHT = 20;
       int DELAY = 200;
       double DENSITY = .7;
+      if (args.length > 1){
       if(args.length > 1){
         WIDTH = Integer.parseInt(args[0]);
         HEIGHT = Integer.parseInt(args[1]);
@@ -100,17 +101,31 @@ public class BurnTrees{
       BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
 
+
       int ans = b.animate(DELAY);//animate all screens
       System.out.println(ans);//print the final answer
+    } else {
+      String an = "";
       double density = 0.05;
-      int size = 1000;
-      int n = 100;
+      int size = 150;
+      int n = 200;
       for(int i = 0; i < 19; i++){
-        System.out.println("Density: " + density + " repetitions: " + n + " Boardsize: " + size + " result: " + averageOfNRuns(n, size, density));
+        an += density + "|" + averageOfNRuns(n,size,density) + "\n";
         density += 0.05;
+      }
+      System.out.println(an);
+      an = "";
+      density = 0.5;
+      size = 150;
+      n = 300;
+      for(int i = 0; i < 26; i++){
+        an += density + "|" + averageOfNRuns(n,size,density) + "\n";
+        density += 0.01;
+      }
+      System.out.println(an);
+    }
       //int ans = b.outputAll();//print all screens one after another
       //System.out.println(ans);//print the final answer
-    }
   }
 
 
