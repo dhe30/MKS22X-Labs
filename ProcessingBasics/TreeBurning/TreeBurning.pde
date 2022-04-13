@@ -88,8 +88,13 @@
      *2. Decide how to fill them in using the String[] parameter
      *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
      */
-     int xcoor = WIDTH / SQUARESIZE;
-     int ycoor = HEIGHT / SQUARESIZE;
+     int xcoor = 0;
+     int ycoor = 0;
+     for(int i = 0; i < lines.length; i++){
+       for(int a = 0; a < lines[i].length; a++){
+         if(
+       }
+     }
 
   }
 
