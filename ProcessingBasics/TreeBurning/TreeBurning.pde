@@ -16,7 +16,7 @@
      *At this point you have initialized width, height,ROWS,COLS. You can change these values
      *to alter the screen size, but you cannot just change one value!
      *What must be true about the ratio of these values in order for this simulation to display squares?
-     *ANSWER HERE:
+     *ANSWER HERE: The ratio of rows to cols must be the same ratio as height to width.
      */
 
     DENSITY = .61;
@@ -27,7 +27,7 @@
      *ANSWER : replace squareSize = 8; with the correct square size.
      * DO NOT just write a number, it must work when you change the size() command or the ROWS and COLS
      */
-    SQUARESIZE = 8;//side length
+    SQUARESIZE = (height + width)/(ROWS + COLS);//side length
 
   }
 
@@ -44,7 +44,9 @@
      *Why do we do this?
      *hint:  If you cannot figure this out analytically, experiment to test
      *       the difference by changing the code. A print statement is commented out to facilitate testing.
-     *ANSWER HERE:
+     *ANSWER HERE: frameCount is increased by 1 each time draw is iterated, therefore, to make 
+                   the display not zoom through the tree burning and give us an unviewable forest fire,
+                   we delay each tick to every 10 draw calls so we can see the fire progression. 
      */
 
     String[]lines = treeSim.toString().split("\n");
@@ -69,7 +71,7 @@
      *Please use the same values that it was initialized with in the setup.
      * ANSWER: UPDATE THE NEXT LINE
      */
-    treeSim = null;
+    treeSim = new BurnTrees(ROWS, COLS, DENSITY);
   }
 
 
@@ -86,6 +88,8 @@
      *2. Decide how to fill them in using the String[] parameter
      *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
      */
+     int xcoor = WIDTH / SQUARESIZE;
+     int ycoor = HEIGHT / SQUARESIZE;
 
   }
 
