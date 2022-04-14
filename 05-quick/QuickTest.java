@@ -122,7 +122,7 @@ public class QuickTest {
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
-    Quick.quicksort(ary);
+    Merge.mergesort(ary);
     boolean test = aryEquals(ary, sortedAry);
     return test;
   }
