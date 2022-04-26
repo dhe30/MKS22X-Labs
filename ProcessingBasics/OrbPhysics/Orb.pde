@@ -21,8 +21,9 @@ public class Orb {
     //make sure it is the correct color
     //make sure you read the parameters of ellipse, so that you have the correct size.
     //radius is NOT one of the parameters of ellipse by default.
-    fill(c, 171);
-    ellipse(x,y,radius*2,radius*2);
+    fill(c, 230);
+    noStroke();
+    ellipse(x, y, radius*2, radius*2);
   }
 
   void move() {
@@ -33,10 +34,10 @@ public class Orb {
     y+=ySpeed;
     //PART 3
     //Change the speed when you collide with the end of the screen (all 4 sides)
-    if(x >= width - radius || x <= 0 + radius){
+    if (x >= width - radius || x <= 0 + radius) {
       xSpeed *= -1;
     }
-    if(y >= height - radius || y <= 0 + radius){
+    if (y >= height - radius || y <= 0 + radius) {
 
       ySpeed *= -1;
     }
@@ -44,20 +45,14 @@ public class Orb {
     //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
     //You don't need a variable for this if every object experiences the same
     //gravitational constant.
-   ySpeed += 0.1;
+    if (xSpeed != 0 && ySpeed != 0) {
+      ySpeed += 0.1;
+    }
   }
-  void attract(Orb other){
-    xSpeed += (other.x - x) / dist(x,y, other.x, other.y);
-    ySpeed += (other.y - y) / dist(x,y, other.x, other.y);
-    
-    if(x >= width - radius || x <= 0 + radius){
-      xSpeed *= -1;
+  void attract(Orb other) {
+    if (x != other.x && y != other.y){
+      xSpeed += ((other.x - x) / dist(x, y, other.x, other.y));
+      ySpeed += ((other.y - y) / dist(x, y, other.x, other.y));
     }
-    if(y >= height - radius || y <= 0 + radius){
-
-      ySpeed *= -1;
-    }
-    
-    ySpeed += 0.1;
   }
 }

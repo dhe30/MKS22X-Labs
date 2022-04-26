@@ -15,7 +15,10 @@ void mouseClicked() {
 }
 void draw() {
   background(255);
+  fill(3, 3, 3);
+  ellipse(500, 350, 3*2, 3*2);
   for (Orb o : orbList) {
+    o.attract(new Orb(500,350,0,0,3));
     o.move();
     o.display();
   }
