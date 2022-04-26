@@ -11,7 +11,7 @@ void mouseClicked() {
   float xSpeed = random(-3,3);
   float ySpeed = random(-3,3);
   float radius = random(20.0,70.0);
-  orbList.add(new Orb(mouseX, mouseY, xSpeed, ySpeed, radius));
+  orbList.add(new Orb(mouseX, mouseY, 5, 0, 20));
 }
 void draw() {
   background(255);
