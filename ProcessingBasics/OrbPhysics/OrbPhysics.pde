@@ -1,6 +1,6 @@
 ArrayList<Orb>orbList;
 void setup() {
-  size(1000, 700);
+  size(1000, 800);
   orbList = new ArrayList<Orb>();
 }
 void mouseClicked() {
