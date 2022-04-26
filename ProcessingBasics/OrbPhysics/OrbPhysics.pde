@@ -26,3 +26,9 @@ void draw() {
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
 }
+
+void keyPressed(){
+  if (key == BACKSPACE){
+      orbList = new ArrayList<Orb>();
+  }
+}
