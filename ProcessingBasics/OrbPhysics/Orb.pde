@@ -34,6 +34,28 @@ public class Orb {
     y+=ySpeed;
     //PART 3
     //Change the speed when you collide with the end of the screen (all 4 sides)
+    //if (x >= width - radius || x <= 0 + radius) {
+    //  xSpeed *= -1;
+    //}
+    //if (y >= height - radius || y <= 0 + radius) {
+
+    //  ySpeed *= -1;
+    //}
+    //Part 4
+    //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
+    //You don't need a variable for this if every object experiences the same
+    //gravitational constant.
+    //if (xSpeed != 0 && ySpeed != 0) {
+    //  ySpeed += 0.1;
+    //}
+  }
+  void attract(Orb other) {
+    if (x != other.x && y != other.y){
+      xSpeed += ((other.x - x) / dist(x, y, other.x, other.y));
+      ySpeed += ((other.y - y) / dist(x, y, other.x, other.y));
+    }
+  }
+  void bounce(){
     if (x >= width - radius || x <= 0 + radius) {
       xSpeed *= -1;
     }
@@ -41,18 +63,9 @@ public class Orb {
 
       ySpeed *= -1;
     }
-    //Part 4
-    //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
-    //You don't need a variable for this if every object experiences the same
-    //gravitational constant.
-    if (xSpeed != 0 && ySpeed != 0) {
-      ySpeed += 0.1;
-    }
   }
-  void attract(Orb other) {
-    if (x != other.x && y != other.y){
-      xSpeed += ((other.x - x) / dist(x, y, other.x, other.y));
-      ySpeed += ((other.y - y) / dist(x, y, other.x, other.y));
-    }
+  
+  void gravity(){
+    ySpeed += 0.15;
   }
 }
