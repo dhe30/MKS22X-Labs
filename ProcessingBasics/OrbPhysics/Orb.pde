@@ -21,7 +21,7 @@ public class Orb {
     //make sure it is the correct color
     //make sure you read the parameters of ellipse, so that you have the correct size.
     //radius is NOT one of the parameters of ellipse by default.
-    fill(c, 230);
+    fill(c, 210);
     noStroke();
     ellipse(x, y, radius*2, radius*2);
   }
@@ -51,8 +51,8 @@ public class Orb {
   }
   void attract(Orb other) {
     if (x != other.x && y != other.y){
-      xSpeed += ((other.x - x) / dist(x, y, other.x, other.y));
-      ySpeed += ((other.y - y) / dist(x, y, other.x, other.y));
+     other.xSpeed += ((20 *(x - other.x)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
+     other.ySpeed += ((20 * (y - other.y)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
     }
   }
   void bounce(){
