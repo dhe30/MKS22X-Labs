@@ -19,10 +19,10 @@ void mouseClicked() {
 void draw() {
   background(255);
   fill(3, 3, 3);
-  ellipse(500, 400, 5*2, 5*2);
+  ellipse(500, 400, 10*2, 10*2);
   for (Orb o : orbList) {
     if (MODE == ORBIT){
-      (new Orb(500,350,0,0,3)).attract(o);
+      (new Orb(500,400,0,0,5)).attract(o);
     }
     o.move();
     if(MODE == GRAVITY){
@@ -34,7 +34,11 @@ void draw() {
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  text(MODE, 20, 60);
+  if (MODE == GRAVITY){
+      text("GRAVITY", 20, 60);
+    } else if (MODE == ORBIT){
+      text("ORBIT", 20, 60);
+    }
 }
 
 void keyPressed(){

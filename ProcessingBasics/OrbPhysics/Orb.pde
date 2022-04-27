@@ -3,6 +3,7 @@ public class Orb {
   float xSpeed, ySpeed;
   float radius;
   color c;
+  
 
   public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_ ) {
     x = x_;
@@ -24,6 +25,8 @@ public class Orb {
     fill(c, 210);
     noStroke();
     ellipse(x, y, radius*2, radius*2);
+    stroke(1);
+    line(x,y, 5*xSpeed + x , 5*ySpeed + y);
   }
 
   void move() {
@@ -50,10 +53,10 @@ public class Orb {
     //}
   }
   void attract(Orb other) {
-    if (x != other.x && y != other.y){
-     other.xSpeed += ((20 *(x - other.x)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
+    
+     other.xSpeed += ((20 * (x - other.x)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
      other.ySpeed += ((20 * (y - other.y)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
-    }
+    
   }
   void bounce(){
     if (x >= width - radius || x <= 0 + radius) {
