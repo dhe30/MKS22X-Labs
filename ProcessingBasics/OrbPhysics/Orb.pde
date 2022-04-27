@@ -3,8 +3,9 @@ public class Orb {
   float xSpeed, ySpeed;
   float radius;
   color c;
-  
-
+  final float SPRING_LENGTH = 50;
+  final float SPRING_CONSTANT = 1;
+  final float SPRING_DAMPEN = 0.99;
   public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_ ) {
     x = x_;
     y = y_;
@@ -24,7 +25,7 @@ public class Orb {
     //radius is NOT one of the parameters of ellipse by default.
     fill(c, 210);
     ellipse(x, y, radius*2, radius*2);
-    line(x,y, 5*xSpeed + x , 5*ySpeed + y);
+    line(x, y, 5*xSpeed + x, 5*ySpeed + y);
   }
 
   void move() {
@@ -51,12 +52,18 @@ public class Orb {
     //}
   }
   void attract(Orb other) {
-    
-     other.xSpeed += ((20 * (x - other.x)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
-     other.ySpeed += ((20 * (y - other.y)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
-    
+
+    other.xSpeed += ((20 * (x - other.x)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
+    other.ySpeed += ((20 * (y - other.y)) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)));
   }
-  void bounce(){
+  void attractSpring(Orb other){
+    float force = (dist(other.x,other.y,500,400)-SPRING_LENGTH) * SPRING_CONSTANT;
+    other.xSpeed = force * dist(other.x,0,500,0)/dist(other.x,other.y,500,400);
+    other.xSpeed*=SPRING_DAMPEN;
+    other.ySpeed = force * dist(0,other.y,0,400)/dist(other.x,other.y,500,400);
+    other.ySpeed*=SPRING_DAMPEN;
+  }
+  void bounce() {
     if (x >= width - radius || x <= 0 + radius) {
       xSpeed *= -1;
     }
@@ -65,8 +72,8 @@ public class Orb {
       ySpeed *= -1;
     }
   }
-  
-  void gravity(){
+
+  void gravity() {
     ySpeed += 0.15;
   }
 }

@@ -1,6 +1,7 @@
 ArrayList<Orb>orbList;
 final int GRAVITY = 0;
 final int ORBIT = 1;
+final int SPRING = 2;
 boolean BACK = true;
 boolean GAVA = true;
 int MODE = GRAVITY;
