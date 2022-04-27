@@ -1,6 +1,8 @@
 ArrayList<Orb>orbList;
 final int GRAVITY = 0;
 final int ORBIT = 1;
+boolean BACK = true;
+boolean GAVA = true;
 int MODE = GRAVITY;
 void setup() {
   size(1000, 800);
@@ -17,39 +19,49 @@ void mouseClicked() {
   orbList.add(new Orb(mouseX, mouseY, 5, 0, 20));
 }
 void draw() {
-  background(255);
+  if (BACK) {
+    background(255);
+  }
   fill(3, 3, 3);
   ellipse(500, 400, 10*2, 10*2);
   for (Orb o : orbList) {
-    if (MODE == ORBIT){
-      (new Orb(500,400,0,0,5)).attract(o);
+    if (MODE == ORBIT) {
+      (new Orb(500, 400, 0, 0, 5)).attract(o);
     }
     o.move();
-    if(MODE == GRAVITY){
+    if (MODE == GRAVITY) {
       o.bounce();
-      o.gravity();
     }
+    if (GAVA) {
+      o.gravity();
+    } 
     o.display();
   }
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  if (MODE == GRAVITY){
-      text("GRAVITY", 20, 60);
-    } else if (MODE == ORBIT){
-      text("ORBIT", 20, 60);
-    }
+  if (MODE == GRAVITY) {
+    text("GRAVITY", 20, 60);
+  } else if (MODE == ORBIT) {
+    text("ORBIT", 20, 60);
+  }
 }
 
-void keyPressed(){
-  if (key == BACKSPACE){
-      orbList = new ArrayList<Orb>();
+void keyPressed() {
+  if (key == BACKSPACE) {
+    orbList = new ArrayList<Orb>();
   }
-  if (key == ' '){
-    if (MODE == GRAVITY){
+  if (key == ' ') {
+    if (MODE == GRAVITY) {
       MODE = ORBIT;
-    } else if (MODE == ORBIT){
+    } else if (MODE == ORBIT) {
       MODE = GRAVITY;
     }
+  }
+  if (key == 'b') {
+    BACK = !BACK;
+  }
+  if (key == 'g'){
+    GAVA = !GAVA;
   }
 }

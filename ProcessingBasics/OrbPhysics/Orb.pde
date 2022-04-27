@@ -23,9 +23,7 @@ public class Orb {
     //make sure you read the parameters of ellipse, so that you have the correct size.
     //radius is NOT one of the parameters of ellipse by default.
     fill(c, 210);
-    noStroke();
     ellipse(x, y, radius*2, radius*2);
-    stroke(1);
     line(x,y, 5*xSpeed + x , 5*ySpeed + y);
   }
 
