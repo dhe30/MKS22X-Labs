@@ -3,9 +3,6 @@ public class Orb {
   float xSpeed, ySpeed;
   float radius;
   color c;
-  final float SPRING_LENGTH = 300;
-  final float SPRING_CONSTANT = 0.005;
-  final float SPRING_DAMPEN = 0.995;
   public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_ ) {
     x = x_;
     y = y_;

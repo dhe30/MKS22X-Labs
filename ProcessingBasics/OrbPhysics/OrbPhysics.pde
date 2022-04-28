@@ -1,10 +1,14 @@
 ArrayList<Orb>orbList;
-final int GRAVITY = 0;
+final int BOUNCE = 0;
 final int ORBIT = 1;
 final int SPRING = 2;
+final float SPRING_LENGTH = 300;
+final float SPRING_CONSTANT = 0.005;
+final float SPRING_DAMPEN = 0.995;
+final Orb center = new Orb(500, 400, 0, 0, 5);
 boolean BACK = true;
 boolean GAVA = true;
-int MODE = GRAVITY;
+int MODE = BOUNCE;
 void setup() {
   size(1000, 800);
   orbList = new ArrayList<Orb>();
@@ -31,12 +35,12 @@ void draw() {
   ellipse(500, 400, 10*2, 10*2);
   for (Orb o : orbList) {
     if (MODE == ORBIT) {
-      (new Orb(500, 400, 0, 0, 5)).attract(o);
+      (center).attract(o);
     } else if (MODE == SPRING){
-      (new Orb(500, 400, 0, 0, 5)).attractSpring(o);
+      (center).attractSpring(o);
     }
     o.move();
-    if (MODE == GRAVITY) {
+    if (MODE == BOUNCE) {
       o.bounce();
     }
     if (GAVA) {
@@ -47,13 +51,14 @@ void draw() {
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  if (MODE == GRAVITY) {
-    text("GRAVITY", 20, 60);
+  if (MODE == BOUNCE) {
+    text("BOUNCE", 20, 60);
   } else if (MODE == ORBIT) {
     text("ORBIT", 20, 60);
   } else if (MODE == SPRING) {
     text("SPRING", 20, 60);
   }
+  
 }
 
 void keyPressed() {
@@ -61,12 +66,12 @@ void keyPressed() {
     orbList = new ArrayList<Orb>();
   }
   if (key == ' ') {
-    if (MODE == GRAVITY) {
+    if (MODE == BOUNCE) {
       MODE = ORBIT;
     } else if (MODE == ORBIT) {
       MODE = SPRING;
     } else if (MODE == SPRING) {
-      MODE = GRAVITY;
+      MODE = BOUNCE;
     }
   }
   if (key == 'b') {
