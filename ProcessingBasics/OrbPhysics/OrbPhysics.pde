@@ -23,11 +23,17 @@ void draw() {
   if (BACK) {
     background(255);
   }
+  fill(255,255,255);
+  noStroke();
+  rect(0,0,75,70);
+  stroke(1);
   fill(3, 3, 3);
   ellipse(500, 400, 10*2, 10*2);
   for (Orb o : orbList) {
     if (MODE == ORBIT) {
       (new Orb(500, 400, 0, 0, 5)).attract(o);
+    } else if (MODE == SPRING){
+      (new Orb(500, 400, 0, 0, 5)).attractSpring(o);
     }
     o.move();
     if (MODE == GRAVITY) {
@@ -45,6 +51,8 @@ void draw() {
     text("GRAVITY", 20, 60);
   } else if (MODE == ORBIT) {
     text("ORBIT", 20, 60);
+  } else if (MODE == SPRING) {
+    text("SPRING", 20, 60);
   }
 }
 
@@ -56,13 +64,15 @@ void keyPressed() {
     if (MODE == GRAVITY) {
       MODE = ORBIT;
     } else if (MODE == ORBIT) {
+      MODE = SPRING;
+    } else if (MODE == SPRING) {
       MODE = GRAVITY;
     }
   }
   if (key == 'b') {
     BACK = !BACK;
   }
-  if (key == 'g'){
+  if (key == 'g') {
     GAVA = !GAVA;
   }
 }
