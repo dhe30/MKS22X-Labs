@@ -1,9 +1,9 @@
- static int SPRING = 2;
- static float SPRING_LENGTH = 50;
- static float SPRING_DAMPEN = 0.990;
- static float SPRING_CONSTANT = 0.015;
- static int MODE = SPRING;
- static float LA_GRAVEDAD = 0.35;
+static int SPRING = 2;
+static float SPRING_LENGTH = 50;
+static float SPRING_DAMPEN = 0.990;
+static float SPRING_CONSTANT = 0.015;
+static int MODE = SPRING;
+static float LA_GRAVEDAD = 0.35;
 OrbList orbs;
 void setup() {
   size(1000, 800);
@@ -19,10 +19,33 @@ void draw() {
   text("SPRING CONSTANT: " + SPRING_CONSTANT, 420, 20);
   text("SPRING DAMPEN: " + SPRING_DAMPEN, 420, 40);
   text("SPRING LENGTH: " + SPRING_LENGTH, 420, 60);
-
+  text("GRAVITY: " + LA_GRAVEDAD, 420, 80);
 }
-void keyPressed(){
-  if (key == '1'){SPRING_CONSTANT*=1.1;}
+void keyPressed() {
+  if (key == '1') {
+    SPRING_CONSTANT*=1.1;
+  }
+  if (key == '2') {
+    SPRING_CONSTANT*=0.9;
+  }
+  if (key == '3') {
+    SPRING_DAMPEN*=1.1;
+  }
+  if (key == '4') {
+    SPRING_DAMPEN*=0.9;
+  }
+  if (key == '5') {
+    SPRING_LENGTH*=1.1;
+  }
+  if (key == '6') {
+    SPRING_LENGTH*=0.9;
+  }
+  if (key == '7') {
+    LA_GRAVEDAD*=1.1;
+  }
+  if (key == '8') {
+    LA_GRAVEDAD*=0.9;
+  }
 }
 
 public class OrbNode {
