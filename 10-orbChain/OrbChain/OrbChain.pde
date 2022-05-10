@@ -1,8 +1,9 @@
-final static int SPRING = 2;
-final static float SPRING_LENGTH = 50;
-final static float SPRING_DAMPEN = 0.990;
-final static float SPRING_CONSTANT = 0.015;
-final static int MODE = SPRING;
+ static int SPRING = 2;
+ static float SPRING_LENGTH = 50;
+ static float SPRING_DAMPEN = 0.990;
+ static float SPRING_CONSTANT = 0.015;
+ static int MODE = SPRING;
+ static float LA_GRAVEDAD = 0.35;
 OrbList orbs;
 void setup() {
   size(1000, 800);
@@ -15,6 +16,13 @@ void draw() {
   background(255);
   orbs.processAll();
   orbs.display();
+  text("SPRING CONSTANT: " + SPRING_CONSTANT, 420, 20);
+  text("SPRING DAMPEN: " + SPRING_DAMPEN, 420, 40);
+  text("SPRING LENGTH: " + SPRING_LENGTH, 420, 60);
+
+}
+void keyPressed(){
+  if (key == '1'){SPRING_CONSTANT*=1.1;}
 }
 
 public class OrbNode {
@@ -79,7 +87,7 @@ public class OrbNode {
     x+=dx;
     y+=dy;
     //apply gravity
-    dy+=0.35;
+    dy+=LA_GRAVEDAD;
   }
 }
 
