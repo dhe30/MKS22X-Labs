@@ -43,9 +43,10 @@ public class OrbNode {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
     if (next != null) {
-      line(x, y, next.x, next.y);
-    } else if (prev != null) {
-      line(x, y, prev.x, prev.y);
+      line(x+1, y+1, next.x+1, next.y+1);
+    } 
+    if (prev != null) {
+      line(x-1, y-1, prev.x-1, prev.y-1);
     }
     //If next or previous exist, draw lines to them! (aim for slightly off center)
     /*you write this part*/
@@ -69,10 +70,10 @@ public class OrbNode {
     //have prev and next apply spring force to this node;
     /*you write this part*/
     if (next != null) {
-      next.springAttract(this);
+      next.springAttract(next.prev);
     } 
     if (prev != null) {
-      prev.springAttract(this);
+      prev.springAttract(prev.next);
     }
     //apply velocity to position
     x+=dx;
@@ -110,10 +111,10 @@ public class OrbList {
    *complete this method
    */
   void add(OrbNode orb) {
-    last.prev = orb.next;
-    first.next = orb.prev;
     orb.next = last;
-    orb.prev = first;
+    last.prev.next = orb;
+    orb.prev = last.prev;
+    last.prev = orb;
     //insert orb at the end of the list before the last node.
   }
 
@@ -132,5 +133,11 @@ public class OrbList {
   void display() {
     OrbNode current = first;
     //advance current to next until it is null, display() each of the nodes
+    while (current.next != null) {
+      current.move();
+      current.display();
+      current=current.next;
+    }
+    current.display();
   }
 }
