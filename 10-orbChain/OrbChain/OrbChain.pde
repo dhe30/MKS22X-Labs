@@ -13,7 +13,7 @@ void setup() {
 void mouseClicked() {
   if (CLICK_MODE.equals("Add")) {
     orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
-  } else if (CLICK_MODE.equals("Insert")){
+  } else if (CLICK_MODE.equals("Insert")) {
     orbs.add(mouseX, new OrbNode(mouseX, mouseY, 0, 0, 30));
   }
 }
@@ -52,7 +52,7 @@ void keyPressed() {
   if (key == '8') {
     LA_GRAVEDAD*=0.9;
   }
-  if (key == ' '){
+  if (key == ' ') {
     CLICK_MODE = "Insert";
   }
 }
@@ -191,10 +191,21 @@ public class OrbList {
     current.next.prev = toBeAdded;
     current.next = toBeAdded;
   }
-  void delete(OrbNode target){
-    if(target != null){
+  void delete(OrbNode target) {
+    if (target != null) {
       target.prev = target.next;
       target.next = target.prev;
     }
+  }
+
+  OrbNode getNodeAt(int x, int y) {
+    OrbNode current = first;
+    while (current.next != null) {
+      if (dist(x, y, current.next.y, current.next.y) <= current.next.radius) {
+        return current.next;
+      }
+      current = current.next;
+    }
+    return null;
   }
 }
