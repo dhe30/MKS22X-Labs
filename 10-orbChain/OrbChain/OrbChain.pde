@@ -191,4 +191,10 @@ public class OrbList {
     current.next.prev = toBeAdded;
     current.next = toBeAdded;
   }
+  void delete(OrbNode target){
+    if(target != null){
+      target.prev = target.next;
+      target.next = target.prev;
+    }
+  }
 }
