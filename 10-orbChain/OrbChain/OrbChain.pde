@@ -53,7 +53,11 @@ void keyPressed() {
     LA_GRAVEDAD*=0.9;
   }
   if (key == ' ') {
-    CLICK_MODE = "Insert";
+    if (CLICK_MODE.equals("Add")){
+      CLICK_MODE = "Insert";
+    } else if (CLICK_MODE.equals("Insert")){
+      CLICK_MODE = "Add";
+    } 
   }
 }
 
