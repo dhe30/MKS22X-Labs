@@ -4,13 +4,18 @@ static float SPRING_DAMPEN = 0.990;
 static float SPRING_CONSTANT = 0.015;
 static int MODE = SPRING;
 static float LA_GRAVEDAD = 0.35;
+static String CLICK_MODE = "Add";
 OrbList orbs;
 void setup() {
   size(1000, 800);
   orbs = new OrbList();
 }
 void mouseClicked() {
-  orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
+  if (CLICK_MODE.equals("Add")) {
+    orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
+  } else if (CLICK_MODE.equals("Insert")){
+    orbs.add(mouseX, new OrbNode(mouseX, mouseY, 0, 0, 30));
+  }
 }
 void draw() {
   background(255);
@@ -20,6 +25,7 @@ void draw() {
   text("SPRING DAMPEN: " + SPRING_DAMPEN, 420, 40);
   text("SPRING LENGTH: " + SPRING_LENGTH, 420, 60);
   text("GRAVITY: " + LA_GRAVEDAD, 420, 80);
+  text("MODE: " + CLICK_MODE, 420, 100);
 }
 void keyPressed() {
   if (key == '1') {
@@ -45,6 +51,9 @@ void keyPressed() {
   }
   if (key == '8') {
     LA_GRAVEDAD*=0.9;
+  }
+  if (key == ' '){
+    CLICK_MODE = "Insert";
   }
 }
 
@@ -170,5 +179,16 @@ public class OrbList {
       current=current.next;
     }
     current.display();
+  }
+
+  void add(int xcor, OrbNode toBeAdded) {
+    OrbNode current = first;
+    while (current.next.x < xcor) {
+      current = current.next;
+    }
+    toBeAdded.prev = current;
+    toBeAdded.next = current.next;
+    current.next.prev = toBeAdded;
+    current.next = toBeAdded;
   }
 }
