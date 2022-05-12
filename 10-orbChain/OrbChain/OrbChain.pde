@@ -15,6 +15,8 @@ void mouseClicked() {
     orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
   } else if (CLICK_MODE.equals("Insert")) {
     orbs.add(mouseX, new OrbNode(mouseX, mouseY, 0, 0, 30));
+  } else if (CLICK_MODE.equals("Delete")) {
+    orbs.delete(orbs.getNodeAt(mouseX, mouseY));
   }
 }
 void draw() {
@@ -56,6 +58,8 @@ void keyPressed() {
     if (CLICK_MODE.equals("Add")){
       CLICK_MODE = "Insert";
     } else if (CLICK_MODE.equals("Insert")){
+      CLICK_MODE = "Delete";
+    } else if (CLICK_MODE.equals("Delete")){
       CLICK_MODE = "Add";
     } 
   }
@@ -197,8 +201,8 @@ public class OrbList {
   }
   void delete(OrbNode target) {
     if (target != null) {
-      target.prev = target.next;
-      target.next = target.prev;
+      target.next.prev = target.prev;
+      target.prev.next = target.next;
     }
   }
 
