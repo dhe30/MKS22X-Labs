@@ -19,7 +19,19 @@ public class Kernel {
    *     0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
    */
   color calcNewColor(PImage img, int x, int y) {
-    return color(0,0,0);
+    float red = 0.0;
+    float green = 0.0;
+    float blue = 0.0;
+    int xcor = x - 1;
+    int ycor = y - 1;
+    for (int i = x - 1; i < x + 2; i++) {
+      for (int a = y - 1; a < y + 2; a++) {
+        red += red(img.get(i, a)) * kernel[i-xcor][a-ycor];
+        green += green(img.get(i, a)) * kernel[i-xcor][a-ycor];
+        blue += blue(img.get(i, a)) * kernel[i-xcor][a-ycor];
+      }
+    }
+    return color(red, green, blue);
     //Hint: start by always returning black.
     //This will let you test your apply method right away!
   }
@@ -29,7 +41,7 @@ public class Kernel {
   void apply(PImage source, PImage destination) {
     for (int i = 0; i < source.height; i++) { 
       for (int a = 0; a < source.width; a++) {
-        destination.set(a,i,calcNewColor(source, a, i));
+        destination.set(a, i, calcNewColor(source, a, i));
       }
     }
   }
@@ -48,6 +60,8 @@ void setup() {
     {.11, .11, .11}, 
     {.11, .11, .11}
     } );
+  Kernel blur = new Kernel( new float[][] {
+    {0.0625, 0.125, 0.0625
   k.apply(car, output);
   image(car, 0, 0);
   image(output, car.width, 0);
