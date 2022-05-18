@@ -111,6 +111,7 @@ void setup() {
   kernels[JOHN].apply(car, output);
   image(car, 0, 0);
   image(output, car.width, 0);
+  text(names[JOHN], 0,0);
 }
 void draw(){
   PImage car = loadImage("redcar.png");
@@ -118,4 +119,6 @@ void draw(){
   kernels[JOHN].apply(car, output);
   image(car, 0, 0);
   image(output, car.width, 0);
+  fill(0,0,0);
+    text(names[JOHN], 0,10);
 }
